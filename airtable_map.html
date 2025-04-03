@@ -1,0 +1,4024 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_f2d2021dd0984a66fad65404e3ecbca2 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_f2d2021dd0984a66fad65404e3ecbca2" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_f2d2021dd0984a66fad65404e3ecbca2 = L.map(
+                "map_f2d2021dd0984a66fad65404e3ecbca2",
+                {
+                    center: [37.5, 126.95],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 14,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_97a395ad8f6d4b1ea94b46334a05a8af = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_97a395ad8f6d4b1ea94b46334a05a8af.addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var tile_layer_d512d2c17489b7364eccbf139c510688 = L.tileLayer(
+                "http://api.vworld.kr/req/wmts/1.0.0/F640BE1E-8470-3590-BBD7-85F0A549B400/Base/{z}/{y}/{x}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 18,
+  "maxNativeZoom": 18,
+  "noWrap": false,
+  "attribution": "\uacf5\uac04\uc815\ubcf4 \uc624\ud508\ud50c\ub7ab\ud3fc(\ube0c\uc774\uc6d4\ub4dc)",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_d512d2c17489b7364eccbf139c510688.addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var macro_element_d35a8bc5b0e4a4bebe5fce3f8ed88928 = L.tileLayer.wms(
+                "http://api.vworld.kr/req/wms?",
+                {"attribution": "", "format": "image/png", "height": 256, "key": "F640BE1E-8470-3590-BBD7-85F0A549B400", "layers": "lt_c_landinfobasemap", "request": "GetMap", "styles": "", "transparent": true, "version": "1.3.0", "width": 256}
+            );
+        
+    
+            macro_element_d35a8bc5b0e4a4bebe5fce3f8ed88928.addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var layer_control_d5f2f461d341eaa6d541bdc097ea5a72_layers = {
+                base_layers : {
+                    "openstreetmap" : tile_layer_97a395ad8f6d4b1ea94b46334a05a8af,
+                    "\ube0c\uc774\uc6d4\ub4dc \ubc30\uacbd\uc9c0\ub3c4" : tile_layer_d512d2c17489b7364eccbf139c510688,
+                },
+                overlays :  {
+                    "LX\ub9f5(\ud3b8\uc9d1\uc9c0\uc801\ub3c4)" : macro_element_d35a8bc5b0e4a4bebe5fce3f8ed88928,
+                },
+            };
+            let layer_control_d5f2f461d341eaa6d541bdc097ea5a72 = L.control.layers(
+                layer_control_d5f2f461d341eaa6d541bdc097ea5a72_layers.base_layers,
+                layer_control_d5f2f461d341eaa6d541bdc097ea5a72_layers.overlays,
+                {
+  "position": "topright",
+  "collapsed": true,
+  "autoZIndex": true,
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+
+        
+    
+            var marker_3c6768631f9b530fac1d3f584acac854 = L.marker(
+                [37.49547251934315, 126.92601343640855],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_dbf7e137f6bce5558bc29d8868ef6a64 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_c351d8ca867c836860ec3dc2d9629ef9 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_71972640edb3da1f94eeede6a3300df6 = $(`<div id="html_71972640edb3da1f94eeede6a3300df6" style="width: 100.0%; height: 100.0%;"><b>지번: 동작구 신대방동</b><br><b>매가: 26억원</b><br>대지: 52평<br>연식: 2014년<br>용도: 단독주택<br>층수: -1/3</div>`)[0];
+                popup_c351d8ca867c836860ec3dc2d9629ef9.setContent(html_71972640edb3da1f94eeede6a3300df6);
+            
+        
+
+        marker_3c6768631f9b530fac1d3f584acac854.bindPopup(popup_c351d8ca867c836860ec3dc2d9629ef9)
+        ;
+
+        
+    
+    
+            marker_3c6768631f9b530fac1d3f584acac854.bindTooltip(
+                `<div>
+                     동작구 신대방동 | 26억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_3c6768631f9b530fac1d3f584acac854.setIcon(icon_dbf7e137f6bce5558bc29d8868ef6a64);
+            
+    
+            var marker_a73e8efd8d060a39d9697d395c5562c0 = L.marker(
+                [37.4771194335344, 126.97931063836288],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_7e69df65e1e68712cfc651c3b3dd2917 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_5c0cabe2681e2184e21c6383f996f684 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_b98a7d68450055e8e82ad76c3fc01b36 = $(`<div id="html_b98a7d68450055e8e82ad76c3fc01b36" style="width: 100.0%; height: 100.0%;"><b>지번: 동작구 사당동</b><br><b>매가: 82억원</b><br>대지: 56평<br>연식: 2011년<br>용도: 제2종근린생활시설<br>층수: -1/9</div>`)[0];
+                popup_5c0cabe2681e2184e21c6383f996f684.setContent(html_b98a7d68450055e8e82ad76c3fc01b36);
+            
+        
+
+        marker_a73e8efd8d060a39d9697d395c5562c0.bindPopup(popup_5c0cabe2681e2184e21c6383f996f684)
+        ;
+
+        
+    
+    
+            marker_a73e8efd8d060a39d9697d395c5562c0.bindTooltip(
+                `<div>
+                     동작구 사당동 | 82억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_a73e8efd8d060a39d9697d395c5562c0.setIcon(icon_7e69df65e1e68712cfc651c3b3dd2917);
+            
+    
+            var marker_1fb36ad2a444da07cd73b54c93659462 = L.marker(
+                [37.49756428132291, 126.9363827112912],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_ea296b426e063ba8fc38921aa75840a1 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_c8b62473c918d7157769b7faead22f3b = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_f3604b72882f26d0ae6c4363354abf9d = $(`<div id="html_f3604b72882f26d0ae6c4363354abf9d" style="width: 100.0%; height: 100.0%;"><b>지번: 동작구 상도동</b><br><b>매가: 18억원</b><br>대지: 57평<br>용도: 제2종근린생활시설<br>층수: -1/3</div>`)[0];
+                popup_c8b62473c918d7157769b7faead22f3b.setContent(html_f3604b72882f26d0ae6c4363354abf9d);
+            
+        
+
+        marker_1fb36ad2a444da07cd73b54c93659462.bindPopup(popup_c8b62473c918d7157769b7faead22f3b)
+        ;
+
+        
+    
+    
+            marker_1fb36ad2a444da07cd73b54c93659462.bindTooltip(
+                `<div>
+                     동작구 상도동 | 18억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_1fb36ad2a444da07cd73b54c93659462.setIcon(icon_ea296b426e063ba8fc38921aa75840a1);
+            
+    
+            var marker_25782b4c90d41134a108a53ab2b3c07e = L.marker(
+                [37.495343197607994, 126.93220191424513],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_b0ee91c08df493e77a0a3bcd42375438 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_870f9a7224bd182500522560141c9be1 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_40cf5cc8cec5389049b397504da12be5 = $(`<div id="html_40cf5cc8cec5389049b397504da12be5" style="width: 100.0%; height: 100.0%;"><b>지번: 동작구 상도동</b><br><b>매가: 21.5억원</b><br>대지: 35평<br>연식: 2022년<br>용도: 단독주택<br>층수: -1/4</div>`)[0];
+                popup_870f9a7224bd182500522560141c9be1.setContent(html_40cf5cc8cec5389049b397504da12be5);
+            
+        
+
+        marker_25782b4c90d41134a108a53ab2b3c07e.bindPopup(popup_870f9a7224bd182500522560141c9be1)
+        ;
+
+        
+    
+    
+            marker_25782b4c90d41134a108a53ab2b3c07e.bindTooltip(
+                `<div>
+                     동작구 상도동 | 21.5억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_25782b4c90d41134a108a53ab2b3c07e.setIcon(icon_b0ee91c08df493e77a0a3bcd42375438);
+            
+    
+            var marker_40de8456c76c64699d9c993b721f40c2 = L.marker(
+                [37.50331112534582, 126.9342602999849],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_08a8fbdc32a7ad844fcdbeaefc66caea = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_7416a69667af5ccc4805c78f8325e891 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_5e02874920d797342a45c8b472b9538c = $(`<div id="html_5e02874920d797342a45c8b472b9538c" style="width: 100.0%; height: 100.0%;"><b>지번: 동작구 상도동</b><br><b>매가: 15.6억원</b><br>대지: 52평<br>연식: 1985년<br>용도: 주택<br>층수: -1/2</div>`)[0];
+                popup_7416a69667af5ccc4805c78f8325e891.setContent(html_5e02874920d797342a45c8b472b9538c);
+            
+        
+
+        marker_40de8456c76c64699d9c993b721f40c2.bindPopup(popup_7416a69667af5ccc4805c78f8325e891)
+        ;
+
+        
+    
+    
+            marker_40de8456c76c64699d9c993b721f40c2.bindTooltip(
+                `<div>
+                     동작구 상도동 | 15.6억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_40de8456c76c64699d9c993b721f40c2.setIcon(icon_08a8fbdc32a7ad844fcdbeaefc66caea);
+            
+    
+            var marker_e3f495ea5ad8138f6d6d67977fa6c5b4 = L.marker(
+                [37.701176445737005, 126.81520988397214],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_f5a4ee08717c1a19080306fcfd6ea292 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_cd57525279140c866db5f4f04b3bf665 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_93b417d1da3476b48ab2d56b49b35d43 = $(`<div id="html_93b417d1da3476b48ab2d56b49b35d43" style="width: 100.0%; height: 100.0%;"><b>지번: 일산동구 성석동</b><br><b>매가: 10억원</b><br>대지: 253평<br>연식: 2003년<br>용도: 공장<br>층수: 0/1</div>`)[0];
+                popup_cd57525279140c866db5f4f04b3bf665.setContent(html_93b417d1da3476b48ab2d56b49b35d43);
+            
+        
+
+        marker_e3f495ea5ad8138f6d6d67977fa6c5b4.bindPopup(popup_cd57525279140c866db5f4f04b3bf665)
+        ;
+
+        
+    
+    
+            marker_e3f495ea5ad8138f6d6d67977fa6c5b4.bindTooltip(
+                `<div>
+                     일산동구 성석동 | 10억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_e3f495ea5ad8138f6d6d67977fa6c5b4.setIcon(icon_f5a4ee08717c1a19080306fcfd6ea292);
+            
+    
+            var marker_082243665a82c17d8909c20ba00785b1 = L.marker(
+                [37.480540256741925, 126.97831574354778],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_2eae2f0f3e3a7e8157ff1888c2849e4e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_e439e0b30be6e5b864005e0bca183b47 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_d99a1900471278e6ca828c455ea8ee92 = $(`<div id="html_d99a1900471278e6ca828c455ea8ee92" style="width: 100.0%; height: 100.0%;"><b>지번: 동작구 사당동</b><br><b>매가: 18억원</b><br>대지: 33평<br>연식: 2018년<br>용도: 단독주택<br>층수: -1/3</div>`)[0];
+                popup_e439e0b30be6e5b864005e0bca183b47.setContent(html_d99a1900471278e6ca828c455ea8ee92);
+            
+        
+
+        marker_082243665a82c17d8909c20ba00785b1.bindPopup(popup_e439e0b30be6e5b864005e0bca183b47)
+        ;
+
+        
+    
+    
+            marker_082243665a82c17d8909c20ba00785b1.bindTooltip(
+                `<div>
+                     동작구 사당동 | 18억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_082243665a82c17d8909c20ba00785b1.setIcon(icon_2eae2f0f3e3a7e8157ff1888c2849e4e);
+            
+    
+            var marker_cb6cf88f8fb46687bdd460965a323ed6 = L.marker(
+                [37.5904166305137, 127.04894186763502],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_b89096d4737ce0a2a628dd733685e1c3 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_a951d8c4285920ae902ef0e73355875d = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_dedbde0ae490bf08d4fe7489bde69e01 = $(`<div id="html_dedbde0ae490bf08d4fe7489bde69e01" style="width: 100.0%; height: 100.0%;"><b>지번: 동대문구 회기동</b><br><b>매가: 7,000만원</b><br>대지: 21평<br>용도: 도로</div>`)[0];
+                popup_a951d8c4285920ae902ef0e73355875d.setContent(html_dedbde0ae490bf08d4fe7489bde69e01);
+            
+        
+
+        marker_cb6cf88f8fb46687bdd460965a323ed6.bindPopup(popup_a951d8c4285920ae902ef0e73355875d)
+        ;
+
+        
+    
+    
+            marker_cb6cf88f8fb46687bdd460965a323ed6.bindTooltip(
+                `<div>
+                     동대문구 회기동 | 7,000만원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_cb6cf88f8fb46687bdd460965a323ed6.setIcon(icon_b89096d4737ce0a2a628dd733685e1c3);
+            
+    
+            var marker_cfead560b049d6318bacc9be2044e1c1 = L.marker(
+                [37.500472544072636, 126.90002711298374],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_0833112fdb0f81b1485bf0b535716a99 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_05de3ab5106b12f573eda3ae6a758419 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_cd565aedcf7d74465ea7a598515c3a9f = $(`<div id="html_cd565aedcf7d74465ea7a598515c3a9f" style="width: 100.0%; height: 100.0%;"><b>지번: 대림동 683-17</b><br><b>매가: 10.8억원</b><br>대지: 30평<br>연식: 1987년<br>용도: 주택<br>층수: -1/2</div>`)[0];
+                popup_05de3ab5106b12f573eda3ae6a758419.setContent(html_cd565aedcf7d74465ea7a598515c3a9f);
+            
+        
+
+        marker_cfead560b049d6318bacc9be2044e1c1.bindPopup(popup_05de3ab5106b12f573eda3ae6a758419)
+        ;
+
+        
+    
+    
+            marker_cfead560b049d6318bacc9be2044e1c1.bindTooltip(
+                `<div>
+                     대림동 683-17 | 10.8억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_cfead560b049d6318bacc9be2044e1c1.setIcon(icon_0833112fdb0f81b1485bf0b535716a99);
+            
+    
+            var marker_ea49a8450a790a38d6dcfaa66553570e = L.marker(
+                [37.48400545025775, 126.93175269956558],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_5bca7ecdf8857fa230fbeaeb0eab9dbd = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_1cfa878b0448d9d08b8956f623edfe7e = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_6983d979cb1bbe7a58e2055fc1e7dbdc = $(`<div id="html_6983d979cb1bbe7a58e2055fc1e7dbdc" style="width: 100.0%; height: 100.0%;"><b>지번: 신림동 11-13</b><br><b>매가: 42억원</b><br>대지: 91평<br>연식: 1993년<br>용도: 단독주택<br>층수: -1/2</div>`)[0];
+                popup_1cfa878b0448d9d08b8956f623edfe7e.setContent(html_6983d979cb1bbe7a58e2055fc1e7dbdc);
+            
+        
+
+        marker_ea49a8450a790a38d6dcfaa66553570e.bindPopup(popup_1cfa878b0448d9d08b8956f623edfe7e)
+        ;
+
+        
+    
+    
+            marker_ea49a8450a790a38d6dcfaa66553570e.bindTooltip(
+                `<div>
+                     신림동 11-13 | 42억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_ea49a8450a790a38d6dcfaa66553570e.setIcon(icon_5bca7ecdf8857fa230fbeaeb0eab9dbd);
+            
+    
+            var marker_2509a5e6b5eebe708fa61ae9a86d210e = L.marker(
+                [37.48897555425614, 126.96309662669304],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_026f20d9bafca3d32d681d8b173fc121 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_283f8372fda62dfa202007bf35a90483 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_c4b113b5e18afabcec9ea7ba3b957f59 = $(`<div id="html_c4b113b5e18afabcec9ea7ba3b957f59" style="width: 100.0%; height: 100.0%;"><b>지번: 동작구 사당동</b><br><b>매가: 17억원</b><br>대지: 34평<br>연식: 2007년<br>용도: 단독주택<br>층수: -0/4</div>`)[0];
+                popup_283f8372fda62dfa202007bf35a90483.setContent(html_c4b113b5e18afabcec9ea7ba3b957f59);
+            
+        
+
+        marker_2509a5e6b5eebe708fa61ae9a86d210e.bindPopup(popup_283f8372fda62dfa202007bf35a90483)
+        ;
+
+        
+    
+    
+            marker_2509a5e6b5eebe708fa61ae9a86d210e.bindTooltip(
+                `<div>
+                     동작구 사당동 | 17억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_2509a5e6b5eebe708fa61ae9a86d210e.setIcon(icon_026f20d9bafca3d32d681d8b173fc121);
+            
+    
+            var marker_8b8df43318ec6e488a8f508a31600360 = L.marker(
+                [37.52108384691283, 126.87432310314941],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_1f4b8e576fa048fc8504979575811367 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_9b91b8e0df2e91b0699a2cdf4ff4dd9b = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_54363f6f14876faaef45580673f78f24 = $(`<div id="html_54363f6f14876faaef45580673f78f24" style="width: 100.0%; height: 100.0%;"><b>지번: 신정동 89-15</b><br><b>매가: 12억원</b><br>대지: 30평<br>연식: 1992년<br>용도: 단독주택<br>층수: -1/2</div>`)[0];
+                popup_9b91b8e0df2e91b0699a2cdf4ff4dd9b.setContent(html_54363f6f14876faaef45580673f78f24);
+            
+        
+
+        marker_8b8df43318ec6e488a8f508a31600360.bindPopup(popup_9b91b8e0df2e91b0699a2cdf4ff4dd9b)
+        ;
+
+        
+    
+    
+            marker_8b8df43318ec6e488a8f508a31600360.bindTooltip(
+                `<div>
+                     신정동 89-15 | 12억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_8b8df43318ec6e488a8f508a31600360.setIcon(icon_1f4b8e576fa048fc8504979575811367);
+            
+    
+            var marker_a8098752b9c88abd160a0e7e8b19eb4a = L.marker(
+                [37.502939870920244, 126.94552452189325],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_193be052ac2736f96f7c0883d30d40b9 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_34a68fe9f3319264f9b4f062f1c184bd = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_bfc69fc029f7fe71e5819ed0eb6003e7 = $(`<div id="html_bfc69fc029f7fe71e5819ed0eb6003e7" style="width: 100.0%; height: 100.0%;"><b>지번: 동작구 상도동</b><br><b>매가: 16.3억원</b><br>대지: 43평<br>연식: 1985년<br>용도: 주택<br>층수: -1/2</div>`)[0];
+                popup_34a68fe9f3319264f9b4f062f1c184bd.setContent(html_bfc69fc029f7fe71e5819ed0eb6003e7);
+            
+        
+
+        marker_a8098752b9c88abd160a0e7e8b19eb4a.bindPopup(popup_34a68fe9f3319264f9b4f062f1c184bd)
+        ;
+
+        
+    
+    
+            marker_a8098752b9c88abd160a0e7e8b19eb4a.bindTooltip(
+                `<div>
+                     동작구 상도동 | 16.3억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_a8098752b9c88abd160a0e7e8b19eb4a.setIcon(icon_193be052ac2736f96f7c0883d30d40b9);
+            
+    
+            var marker_7a96dcc29c96c6f228b31dd2da4c6eee = L.marker(
+                [34.85977605557773, 128.4503956271945],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_4cbd91a11d0d36974c67b255ee7b41eb = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_4a8695fe69adf44aaec067f0bead37d2 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_6e9e00f976f4bef27157e568043eed68 = $(`<div id="html_6e9e00f976f4bef27157e568043eed68" style="width: 100.0%; height: 100.0%;"><b>지번: 통영시 화삼리 2-3</b><br><b>매가: 16억원</b><br>대지: 473평<br>연식: 2010년<br>용도: 단독주택(다가구) 외1<br>층수: -1/3</div>`)[0];
+                popup_4a8695fe69adf44aaec067f0bead37d2.setContent(html_6e9e00f976f4bef27157e568043eed68);
+            
+        
+
+        marker_7a96dcc29c96c6f228b31dd2da4c6eee.bindPopup(popup_4a8695fe69adf44aaec067f0bead37d2)
+        ;
+
+        
+    
+    
+            marker_7a96dcc29c96c6f228b31dd2da4c6eee.bindTooltip(
+                `<div>
+                     통영시 화삼리 2-3 | 16억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_7a96dcc29c96c6f228b31dd2da4c6eee.setIcon(icon_4cbd91a11d0d36974c67b255ee7b41eb);
+            
+    
+            var marker_df5f34b51fd24c56a60e2c69d2240c81 = L.marker(
+                [37.500895607994266, 126.93858586526164],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_283512570ff5eb2ebc861df257fe2619 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_385f47ae02f7a1ea63e7af22526a2840 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_1ebf04a836ee4ec367ef7f46337222d8 = $(`<div id="html_1ebf04a836ee4ec367ef7f46337222d8" style="width: 100.0%; height: 100.0%;"><b>지번: 동작구 상도동</b><br><b>매가: 12억원</b><br>대지: 40평<br>연식: 1992년<br>용도: 다가구주택(5)<br>층수: -1/2</div>`)[0];
+                popup_385f47ae02f7a1ea63e7af22526a2840.setContent(html_1ebf04a836ee4ec367ef7f46337222d8);
+            
+        
+
+        marker_df5f34b51fd24c56a60e2c69d2240c81.bindPopup(popup_385f47ae02f7a1ea63e7af22526a2840)
+        ;
+
+        
+    
+    
+            marker_df5f34b51fd24c56a60e2c69d2240c81.bindTooltip(
+                `<div>
+                     동작구 상도동 | 12억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_df5f34b51fd24c56a60e2c69d2240c81.setIcon(icon_283512570ff5eb2ebc861df257fe2619);
+            
+    
+            var marker_3e783b341b92cf31d3417fddf9a6c11c = L.marker(
+                [37.48255209892558, 126.97222788139888],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_c42a4e3cedf20ebdab0c5432f2ae5df9 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_28891583ae10a6f5cfdeeaa6a9e865a5 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_dcbf752c50bbb2a2dd524dba13ff8344 = $(`<div id="html_dcbf752c50bbb2a2dd524dba13ff8344" style="width: 100.0%; height: 100.0%;"><b>지번: 동작구 사당동</b><br><b>매가: 19.7억원</b><br>대지: 34평<br>연식: 2014년<br>용도: 단독주택<br>층수: -0/5</div>`)[0];
+                popup_28891583ae10a6f5cfdeeaa6a9e865a5.setContent(html_dcbf752c50bbb2a2dd524dba13ff8344);
+            
+        
+
+        marker_3e783b341b92cf31d3417fddf9a6c11c.bindPopup(popup_28891583ae10a6f5cfdeeaa6a9e865a5)
+        ;
+
+        
+    
+    
+            marker_3e783b341b92cf31d3417fddf9a6c11c.bindTooltip(
+                `<div>
+                     동작구 사당동 | 19.7억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_3e783b341b92cf31d3417fddf9a6c11c.setIcon(icon_c42a4e3cedf20ebdab0c5432f2ae5df9);
+            
+    
+            var marker_0a35acd400e7fcdf262eafc8b0d18b06 = L.marker(
+                [37.49434107823588, 126.88238495414878],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_e84178d527b820d042fa03564c6ebb4d = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_53b317a1379717682af9f97c98954a2c = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_0dd60fddb44016888e93836cfc1315fb = $(`<div id="html_0dd60fddb44016888e93836cfc1315fb" style="width: 100.0%; height: 100.0%;"><b>지번: 구로동 409-58</b><br><b>매가: 12억원</b><br>대지: 38평<br>연식: 1993년<br>용도: 단독주택<br>층수: -1/2</div>`)[0];
+                popup_53b317a1379717682af9f97c98954a2c.setContent(html_0dd60fddb44016888e93836cfc1315fb);
+            
+        
+
+        marker_0a35acd400e7fcdf262eafc8b0d18b06.bindPopup(popup_53b317a1379717682af9f97c98954a2c)
+        ;
+
+        
+    
+    
+            marker_0a35acd400e7fcdf262eafc8b0d18b06.bindTooltip(
+                `<div>
+                     구로동 409-58 | 12억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_0a35acd400e7fcdf262eafc8b0d18b06.setIcon(icon_e84178d527b820d042fa03564c6ebb4d);
+            
+    
+            var marker_6bb224fa5dc7db547ca1d3c1935bcb68 = L.marker(
+                [37.473997780296585, 126.97042878941406],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_03dc824a1f6e6d8efc2fd378a0cb45ff = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_db1d53bbda35cf6d673640d694bb511e = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_e292546704c4e5914e6bf770b96e0731 = $(`<div id="html_e292546704c4e5914e6bf770b96e0731" style="width: 100.0%; height: 100.0%;"><b>지번: 봉천동 173-44</b><br><b>매가: 14억원</b><br>대지: 51평<br>연식: 1989년<br>용도: 주택<br>층수: -1/2</div>`)[0];
+                popup_db1d53bbda35cf6d673640d694bb511e.setContent(html_e292546704c4e5914e6bf770b96e0731);
+            
+        
+
+        marker_6bb224fa5dc7db547ca1d3c1935bcb68.bindPopup(popup_db1d53bbda35cf6d673640d694bb511e)
+        ;
+
+        
+    
+    
+            marker_6bb224fa5dc7db547ca1d3c1935bcb68.bindTooltip(
+                `<div>
+                     봉천동 173-44 | 14억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_6bb224fa5dc7db547ca1d3c1935bcb68.setIcon(icon_03dc824a1f6e6d8efc2fd378a0cb45ff);
+            
+    
+            var marker_29c1e08a931de13d0cd1d48e93b25d86 = L.marker(
+                [37.49963242083629, 126.95226834553908],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_6bc650dd719d8fa664405db2a0373b4a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_99978eae7bdfd5240239d1af0c413877 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_b95e091a196118f934a3fb90082990b3 = $(`<div id="html_b95e091a196118f934a3fb90082990b3" style="width: 100.0%; height: 100.0%;"><b>지번: 동작구 상도동</b><br><b>매가: 26억원</b><br>대지: 53평<br>연식: 2017년<br>용도: 단독주택<br>층수: -1/3</div>`)[0];
+                popup_99978eae7bdfd5240239d1af0c413877.setContent(html_b95e091a196118f934a3fb90082990b3);
+            
+        
+
+        marker_29c1e08a931de13d0cd1d48e93b25d86.bindPopup(popup_99978eae7bdfd5240239d1af0c413877)
+        ;
+
+        
+    
+    
+            marker_29c1e08a931de13d0cd1d48e93b25d86.bindTooltip(
+                `<div>
+                     동작구 상도동 | 26억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_29c1e08a931de13d0cd1d48e93b25d86.setIcon(icon_6bc650dd719d8fa664405db2a0373b4a);
+            
+    
+            var marker_7d00d637213c582dbb9ffd228fd78988 = L.marker(
+                [37.47924190138555, 126.97758015358202],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_f90faf91b8a34301751ad4d0616a099d = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_bb714057f838cbd66a491236b0d6679a = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_8a3f2e1be2048acd9607c5db5b2458ba = $(`<div id="html_8a3f2e1be2048acd9607c5db5b2458ba" style="width: 100.0%; height: 100.0%;"><b>지번: 동작구 사당동</b><br><b>매가: 37억원</b><br>대지: 52평<br>연식: 2023년<br>용도: 단독주택<br>층수: -0/5</div>`)[0];
+                popup_bb714057f838cbd66a491236b0d6679a.setContent(html_8a3f2e1be2048acd9607c5db5b2458ba);
+            
+        
+
+        marker_7d00d637213c582dbb9ffd228fd78988.bindPopup(popup_bb714057f838cbd66a491236b0d6679a)
+        ;
+
+        
+    
+    
+            marker_7d00d637213c582dbb9ffd228fd78988.bindTooltip(
+                `<div>
+                     동작구 사당동 | 37억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_7d00d637213c582dbb9ffd228fd78988.setIcon(icon_f90faf91b8a34301751ad4d0616a099d);
+            
+    
+            var marker_2fdf31efccfdbe1ef7edf3e304e1748f = L.marker(
+                [37.476261279678624, 126.9531344493166],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_99717129b47ee154a21dbdca6a669479 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_0b6814b2bf20745c1ff4407766f8440a = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_a5637b948ccb5a9cb113087967667b72 = $(`<div id="html_a5637b948ccb5a9cb113087967667b72" style="width: 100.0%; height: 100.0%;"><b>지번: 봉천동 1596-13</b><br><b>매가: 32억원</b><br>대지: 123평<br>연식: 1998년<br>용도: 단독주택<br>층수: -1/3</div>`)[0];
+                popup_0b6814b2bf20745c1ff4407766f8440a.setContent(html_a5637b948ccb5a9cb113087967667b72);
+            
+        
+
+        marker_2fdf31efccfdbe1ef7edf3e304e1748f.bindPopup(popup_0b6814b2bf20745c1ff4407766f8440a)
+        ;
+
+        
+    
+    
+            marker_2fdf31efccfdbe1ef7edf3e304e1748f.bindTooltip(
+                `<div>
+                     봉천동 1596-13 | 32억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_2fdf31efccfdbe1ef7edf3e304e1748f.setIcon(icon_99717129b47ee154a21dbdca6a669479);
+            
+    
+            var marker_4ddf921edc1180c770824e2d2fe28120 = L.marker(
+                [37.51142504502114, 126.94712513686383],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_a5f04ee87ca82a5993717fa982786401 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_196204f238406760ebe8d3cf57ce4da1 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_bd34f142c707ab53218acda0f02b2b17 = $(`<div id="html_bd34f142c707ab53218acda0f02b2b17" style="width: 100.0%; height: 100.0%;"><b>지번: 동작구 노량진동</b><br><b>매가: 28억원</b><br>대지: 0평<br>연식: 1990년<br>용도: 단독주택<br>층수: -1/3</div>`)[0];
+                popup_196204f238406760ebe8d3cf57ce4da1.setContent(html_bd34f142c707ab53218acda0f02b2b17);
+            
+        
+
+        marker_4ddf921edc1180c770824e2d2fe28120.bindPopup(popup_196204f238406760ebe8d3cf57ce4da1)
+        ;
+
+        
+    
+    
+            marker_4ddf921edc1180c770824e2d2fe28120.bindTooltip(
+                `<div>
+                     동작구 노량진동 | 28억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_4ddf921edc1180c770824e2d2fe28120.setIcon(icon_a5f04ee87ca82a5993717fa982786401);
+            
+    
+            var marker_743e3b7d2f0da112593b529c105bd548 = L.marker(
+                [37.50311514894836, 126.95064368769299],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_6d75a3b09d42b1bb2ef188e4edbc29d6 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_29bb548c7b5a88b75eaae998e43e5350 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_2dd0757f6f0e5c3418d04ee504b0128c = $(`<div id="html_2dd0757f6f0e5c3418d04ee504b0128c" style="width: 100.0%; height: 100.0%;"><b>지번: 동작구 상도1동</b><br><b>매가: 42억원</b><br>대지: 77평<br>연식: 2019년<br>용도: 다중주택 및 근린생활시설<br>층수: -1/4</div>`)[0];
+                popup_29bb548c7b5a88b75eaae998e43e5350.setContent(html_2dd0757f6f0e5c3418d04ee504b0128c);
+            
+        
+
+        marker_743e3b7d2f0da112593b529c105bd548.bindPopup(popup_29bb548c7b5a88b75eaae998e43e5350)
+        ;
+
+        
+    
+    
+            marker_743e3b7d2f0da112593b529c105bd548.bindTooltip(
+                `<div>
+                     동작구 상도1동 | 42억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_743e3b7d2f0da112593b529c105bd548.setIcon(icon_6d75a3b09d42b1bb2ef188e4edbc29d6);
+            
+    
+            var marker_91379c9dec6d44d813876640be834f28 = L.marker(
+                [37.48424983042329, 126.94940169149953],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_799927745a39a475d6b6fb1827734967 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_e0298483dff499f714173b56d5b80125 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_7d7da9c8e39bc24503eb0ca9c5086655 = $(`<div id="html_7d7da9c8e39bc24503eb0ca9c5086655" style="width: 100.0%; height: 100.0%;"><b>지번: 봉천동 1512-4</b><br><b>매가: 39억원</b><br>대지: 75평<br>연식: 2011년<br>용도: 제2종근린생활시설<br>층수: -2/4</div>`)[0];
+                popup_e0298483dff499f714173b56d5b80125.setContent(html_7d7da9c8e39bc24503eb0ca9c5086655);
+            
+        
+
+        marker_91379c9dec6d44d813876640be834f28.bindPopup(popup_e0298483dff499f714173b56d5b80125)
+        ;
+
+        
+    
+    
+            marker_91379c9dec6d44d813876640be834f28.bindTooltip(
+                `<div>
+                     봉천동 1512-4 | 39억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_91379c9dec6d44d813876640be834f28.setIcon(icon_799927745a39a475d6b6fb1827734967);
+            
+    
+            var marker_3e336c02e70b288b961e242bb752bae6 = L.marker(
+                [37.47293648945991, 126.98159208982854],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_ed3659f489ee2d8f65d5342b87bcc15d = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_e75c185fdc7972ea7c4354bc9ae3f80e = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_6fc1e70ee5f442155860c96e41b75eea = $(`<div id="html_6fc1e70ee5f442155860c96e41b75eea" style="width: 100.0%; height: 100.0%;"><b>지번: 남현동 602-245</b><br><b>매가: 49.5억원</b><br>대지: 90평<br>연식: 1995년<br>용도: 단독주택<br>층수: -2/3</div>`)[0];
+                popup_e75c185fdc7972ea7c4354bc9ae3f80e.setContent(html_6fc1e70ee5f442155860c96e41b75eea);
+            
+        
+
+        marker_3e336c02e70b288b961e242bb752bae6.bindPopup(popup_e75c185fdc7972ea7c4354bc9ae3f80e)
+        ;
+
+        
+    
+    
+            marker_3e336c02e70b288b961e242bb752bae6.bindTooltip(
+                `<div>
+                     남현동 602-245 | 49.5억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_3e336c02e70b288b961e242bb752bae6.setIcon(icon_ed3659f489ee2d8f65d5342b87bcc15d);
+            
+    
+            var marker_6d3fec85642381f988fcd84b2f02d531 = L.marker(
+                [37.48400476739667, 126.97006732481948],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_a4d2f196fd20c664eca576643af5fa67 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_c39c49895d82425dac1c4c46f8c09c20 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_cbacb5c52e6583d17bc29efe9fb9ef9c = $(`<div id="html_cbacb5c52e6583d17bc29efe9fb9ef9c" style="width: 100.0%; height: 100.0%;"><b>지번: 동작구 사당동</b><br><b>매가: 15억원</b><br>대지: 29평<br>연식: 1988년<br>용도: 단독주택<br>층수: -1/3</div>`)[0];
+                popup_c39c49895d82425dac1c4c46f8c09c20.setContent(html_cbacb5c52e6583d17bc29efe9fb9ef9c);
+            
+        
+
+        marker_6d3fec85642381f988fcd84b2f02d531.bindPopup(popup_c39c49895d82425dac1c4c46f8c09c20)
+        ;
+
+        
+    
+    
+            marker_6d3fec85642381f988fcd84b2f02d531.bindTooltip(
+                `<div>
+                     동작구 사당동 | 15억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_6d3fec85642381f988fcd84b2f02d531.setIcon(icon_a4d2f196fd20c664eca576643af5fa67);
+            
+    
+            var marker_6d035c87c86cfd97b30875dbbb687fbf = L.marker(
+                [37.489220845036655, 126.92403391297938],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_1f66937e268722aec3965bc427e21fd2 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_9b6921d173844cca2e37fc918a238f75 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_5f85adf7bd0898094980cb353b653937 = $(`<div id="html_5f85adf7bd0898094980cb353b653937" style="width: 100.0%; height: 100.0%;"><b>지번: 신림동 1450-14</b><br><b>매가: 20.8억원</b><br>대지: 64평<br>연식: 2000년<br>용도: 단독주택<br>층수: -0/3</div>`)[0];
+                popup_9b6921d173844cca2e37fc918a238f75.setContent(html_5f85adf7bd0898094980cb353b653937);
+            
+        
+
+        marker_6d035c87c86cfd97b30875dbbb687fbf.bindPopup(popup_9b6921d173844cca2e37fc918a238f75)
+        ;
+
+        
+    
+    
+            marker_6d035c87c86cfd97b30875dbbb687fbf.bindTooltip(
+                `<div>
+                     신림동 1450-14 | 20.8억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_6d035c87c86cfd97b30875dbbb687fbf.setIcon(icon_1f66937e268722aec3965bc427e21fd2);
+            
+    
+            var marker_f5e32d8c0f379335f56fcafe5e5bf67b = L.marker(
+                [37.47764477584661, 126.97297192873232],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_d6eff4d5945cdf03c2427a531a07f307 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_e21c114809ab767c0d7f8b143cbd434b = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_ac936d65e1ccdf7b5022f52068f4c8c7 = $(`<div id="html_ac936d65e1ccdf7b5022f52068f4c8c7" style="width: 100.0%; height: 100.0%;"><b>지번: 동작구 사당동</b><br><b>매가: 25억원</b><br>대지: 49평<br>연식: 2010년<br>용도: 단독주택<br>층수: -1/3</div>`)[0];
+                popup_e21c114809ab767c0d7f8b143cbd434b.setContent(html_ac936d65e1ccdf7b5022f52068f4c8c7);
+            
+        
+
+        marker_f5e32d8c0f379335f56fcafe5e5bf67b.bindPopup(popup_e21c114809ab767c0d7f8b143cbd434b)
+        ;
+
+        
+    
+    
+            marker_f5e32d8c0f379335f56fcafe5e5bf67b.bindTooltip(
+                `<div>
+                     동작구 사당동 | 25억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_f5e32d8c0f379335f56fcafe5e5bf67b.setIcon(icon_d6eff4d5945cdf03c2427a531a07f307);
+            
+    
+            var marker_29c9d79587cb99774237a6a55982603e = L.marker(
+                [37.482646232891724, 126.9752175326821],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_20d75cf3a8c9713e6577d46bb83444ef = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_db1e282fc41da84e472f842f7af8b117 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_c4dd88dee5ff37cd35881f283f37ce01 = $(`<div id="html_c4dd88dee5ff37cd35881f283f37ce01" style="width: 100.0%; height: 100.0%;"><b>지번: 동작구 사당동</b><br><b>매가: 23억원</b><br>대지: 38평<br>연식: 2022년<br>용도: 공동주택<br>층수: -0/5</div>`)[0];
+                popup_db1e282fc41da84e472f842f7af8b117.setContent(html_c4dd88dee5ff37cd35881f283f37ce01);
+            
+        
+
+        marker_29c9d79587cb99774237a6a55982603e.bindPopup(popup_db1e282fc41da84e472f842f7af8b117)
+        ;
+
+        
+    
+    
+            marker_29c9d79587cb99774237a6a55982603e.bindTooltip(
+                `<div>
+                     동작구 사당동 | 23억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_29c9d79587cb99774237a6a55982603e.setIcon(icon_20d75cf3a8c9713e6577d46bb83444ef);
+            
+    
+            var marker_7660c8f0ac411f78698229fa5b706074 = L.marker(
+                [37.4783276294738, 126.98764485438306],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_d5d1862b39025cfba461bc0a1d863085 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_2515cdac87416afdc0902c625edc8b24 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_305a9d4e041e321897cae6cbcd462085 = $(`<div id="html_305a9d4e041e321897cae6cbcd462085" style="width: 100.0%; height: 100.0%;"><b>지번: 방배동 475-15</b><br><b>매가: 24억원</b><br>대지: 41평<br>연식: 1995년<br>용도: 다가구용단독주택(7가구)<br>층수: -1/3</div>`)[0];
+                popup_2515cdac87416afdc0902c625edc8b24.setContent(html_305a9d4e041e321897cae6cbcd462085);
+            
+        
+
+        marker_7660c8f0ac411f78698229fa5b706074.bindPopup(popup_2515cdac87416afdc0902c625edc8b24)
+        ;
+
+        
+    
+    
+            marker_7660c8f0ac411f78698229fa5b706074.bindTooltip(
+                `<div>
+                     방배동 475-15 | 24억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_7660c8f0ac411f78698229fa5b706074.setIcon(icon_d5d1862b39025cfba461bc0a1d863085);
+            
+    
+            var marker_cb36a8c5eebf12809e3d8444347ab98c = L.marker(
+                [37.48037719921872, 126.97893457174209],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_79a9292c2134ad5bf88d1bbf4319149d = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_256ce8f6f7633709d9808fb7f2389b7d = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_0acf8f9d6654ce0b86e7eb781f650439 = $(`<div id="html_0acf8f9d6654ce0b86e7eb781f650439" style="width: 100.0%; height: 100.0%;"><b>지번: 동작구 사당동</b><br><b>매가: 27억원</b><br>대지: 43평<br>연식: 2018년<br>용도: 단독주택<br>층수: -0/5</div>`)[0];
+                popup_256ce8f6f7633709d9808fb7f2389b7d.setContent(html_0acf8f9d6654ce0b86e7eb781f650439);
+            
+        
+
+        marker_cb36a8c5eebf12809e3d8444347ab98c.bindPopup(popup_256ce8f6f7633709d9808fb7f2389b7d)
+        ;
+
+        
+    
+    
+            marker_cb36a8c5eebf12809e3d8444347ab98c.bindTooltip(
+                `<div>
+                     동작구 사당동 | 27억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_cb36a8c5eebf12809e3d8444347ab98c.setIcon(icon_79a9292c2134ad5bf88d1bbf4319149d);
+            
+    
+            var marker_06d680c162c94fe5624b0a8cbfa05e42 = L.marker(
+                [37.47807780542912, 126.98731172305872],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_ea10d5c7976b6b507c7322d3adecd8da = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_685d25793443a63c38a20a1f6c8aec9b = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_bb5da792f67b4f526ee3c8865267effb = $(`<div id="html_bb5da792f67b4f526ee3c8865267effb" style="width: 100.0%; height: 100.0%;"><b>지번: 방배동 475-27</b><br><b>매가: 35억원</b><br>대지: 50평<br>연식: 1983년<br>용도: 단독주택<br>층수: -1/3</div>`)[0];
+                popup_685d25793443a63c38a20a1f6c8aec9b.setContent(html_bb5da792f67b4f526ee3c8865267effb);
+            
+        
+
+        marker_06d680c162c94fe5624b0a8cbfa05e42.bindPopup(popup_685d25793443a63c38a20a1f6c8aec9b)
+        ;
+
+        
+    
+    
+            marker_06d680c162c94fe5624b0a8cbfa05e42.bindTooltip(
+                `<div>
+                     방배동 475-27 | 35억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_06d680c162c94fe5624b0a8cbfa05e42.setIcon(icon_ea10d5c7976b6b507c7322d3adecd8da);
+            
+    
+            var marker_945430fbf9e8fd6277e21f1d603a31ac = L.marker(
+                [37.501200938787385, 126.95268228204031],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_a94adb4a6a92475f767aeeba90b60bce = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_9f5151d91df1697a3d716366305c0a80 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_ad91d55aafc2a17d428f7a479a036b9c = $(`<div id="html_ad91d55aafc2a17d428f7a479a036b9c" style="width: 100.0%; height: 100.0%;"><b>지번: 동작구 상도1동</b><br><b>매가: 12.5억원</b><br>대지: 0평<br>연식: 1990년<br>용도: 단독주택<br>층수: -1/2</div>`)[0];
+                popup_9f5151d91df1697a3d716366305c0a80.setContent(html_ad91d55aafc2a17d428f7a479a036b9c);
+            
+        
+
+        marker_945430fbf9e8fd6277e21f1d603a31ac.bindPopup(popup_9f5151d91df1697a3d716366305c0a80)
+        ;
+
+        
+    
+    
+            marker_945430fbf9e8fd6277e21f1d603a31ac.bindTooltip(
+                `<div>
+                     동작구 상도1동 | 12.5억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_945430fbf9e8fd6277e21f1d603a31ac.setIcon(icon_a94adb4a6a92475f767aeeba90b60bce);
+            
+    
+            var marker_0744da298a6769aced11acfa31c3260d = L.marker(
+                [37.51199973467364, 126.94172851236169],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_cf3d282b9af0debc6e92ea392a858b07 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_7f7e6c50d2edd1fc7c6a9fb78c7b5c53 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_8a9ffb91d7b3333f757083c5754d7b45 = $(`<div id="html_8a9ffb91d7b3333f757083c5754d7b45" style="width: 100.0%; height: 100.0%;"><b>지번: 동작구 노량진동</b><br><b>매가: 49억원</b><br>대지: 0평<br>연식: 1974년<br>용도: 단독주택<br>층수: -1/2</div>`)[0];
+                popup_7f7e6c50d2edd1fc7c6a9fb78c7b5c53.setContent(html_8a9ffb91d7b3333f757083c5754d7b45);
+            
+        
+
+        marker_0744da298a6769aced11acfa31c3260d.bindPopup(popup_7f7e6c50d2edd1fc7c6a9fb78c7b5c53)
+        ;
+
+        
+    
+    
+            marker_0744da298a6769aced11acfa31c3260d.bindTooltip(
+                `<div>
+                     동작구 노량진동 | 49억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_0744da298a6769aced11acfa31c3260d.setIcon(icon_cf3d282b9af0debc6e92ea392a858b07);
+            
+    
+            var marker_6dbbeff654bc3446f560a7a5160e1d76 = L.marker(
+                [37.48185477673951, 126.90928864236064],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_086614df2708d11413a5acc31252420e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_29266b216f0628b8acceec8e38f16d57 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_5c8d21d09d80d88590afc3f64c558ccd = $(`<div id="html_5c8d21d09d80d88590afc3f64c558ccd" style="width: 100.0%; height: 100.0%;"><b>지번: 신림동 563-24</b><br><b>매가: 50억원</b><br>대지: 95평<br>연식: 1994년<br>용도: 주택 근린생활시설<br>층수: -1/3</div>`)[0];
+                popup_29266b216f0628b8acceec8e38f16d57.setContent(html_5c8d21d09d80d88590afc3f64c558ccd);
+            
+        
+
+        marker_6dbbeff654bc3446f560a7a5160e1d76.bindPopup(popup_29266b216f0628b8acceec8e38f16d57)
+        ;
+
+        
+    
+    
+            marker_6dbbeff654bc3446f560a7a5160e1d76.bindTooltip(
+                `<div>
+                     신림동 563-24 | 50억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_6dbbeff654bc3446f560a7a5160e1d76.setIcon(icon_086614df2708d11413a5acc31252420e);
+            
+    
+            var marker_eca760a7b7392de5ce46a7159d33468e = L.marker(
+                [37.481767544167916, 126.97055298702325],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_2e25c603b76a4f8c9eb64940b1d2e9ac = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_d7a7279bd49ea84977d7bd4ad455c5b1 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_c16bbce1722121a17350c3cf1a586568 = $(`<div id="html_c16bbce1722121a17350c3cf1a586568" style="width: 100.0%; height: 100.0%;"><b>지번: 동작구 사당동</b><br><b>매가: 15억원</b><br>대지: 41평<br>연식: 2012년<br>용도: 단독주택(다중주택)<br>층수: -1/3</div>`)[0];
+                popup_d7a7279bd49ea84977d7bd4ad455c5b1.setContent(html_c16bbce1722121a17350c3cf1a586568);
+            
+        
+
+        marker_eca760a7b7392de5ce46a7159d33468e.bindPopup(popup_d7a7279bd49ea84977d7bd4ad455c5b1)
+        ;
+
+        
+    
+    
+            marker_eca760a7b7392de5ce46a7159d33468e.bindTooltip(
+                `<div>
+                     동작구 사당동 | 15억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_eca760a7b7392de5ce46a7159d33468e.setIcon(icon_2e25c603b76a4f8c9eb64940b1d2e9ac);
+            
+    
+            var marker_96dccb3c90e61993b985d9a1ac328596 = L.marker(
+                [37.47693848495086, 126.97083573023747],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_c3db82e34a301fc10220d4070c22e6a4 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_52439d85f0c233c71039ca71fa2f6648 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_70fc0e4c18baebaa10240c974f5c47c9 = $(`<div id="html_70fc0e4c18baebaa10240c974f5c47c9" style="width: 100.0%; height: 100.0%;"><b>지번: 동작구 사당동</b><br><b>매가: 23.5억원</b><br>대지: 50평<br>연식: 2010년<br>용도: 단독주택<br>층수: -1/3</div>`)[0];
+                popup_52439d85f0c233c71039ca71fa2f6648.setContent(html_70fc0e4c18baebaa10240c974f5c47c9);
+            
+        
+
+        marker_96dccb3c90e61993b985d9a1ac328596.bindPopup(popup_52439d85f0c233c71039ca71fa2f6648)
+        ;
+
+        
+    
+    
+            marker_96dccb3c90e61993b985d9a1ac328596.bindTooltip(
+                `<div>
+                     동작구 사당동 | 23.5억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_96dccb3c90e61993b985d9a1ac328596.setIcon(icon_c3db82e34a301fc10220d4070c22e6a4);
+            
+    
+            var marker_c867762448698c184eb71edff5b350a7 = L.marker(
+                [37.540119414599104, 126.84218617484457],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_9fccce2edd124ce1d3dd927261fe1c0f = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_b9ac3e59ab88df330295c74c394b6f56 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_78183410285186b2328824f68f45f788 = $(`<div id="html_78183410285186b2328824f68f45f788" style="width: 100.0%; height: 100.0%;"><b>지번: 화곡동 105-141</b><br><b>매가: 26억원</b><br>대지: 81평<br>연식: 1994년<br>용도: 단독주택<br>층수: -1/3</div>`)[0];
+                popup_b9ac3e59ab88df330295c74c394b6f56.setContent(html_78183410285186b2328824f68f45f788);
+            
+        
+
+        marker_c867762448698c184eb71edff5b350a7.bindPopup(popup_b9ac3e59ab88df330295c74c394b6f56)
+        ;
+
+        
+    
+    
+            marker_c867762448698c184eb71edff5b350a7.bindTooltip(
+                `<div>
+                     화곡동 105-141 | 26억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_c867762448698c184eb71edff5b350a7.setIcon(icon_9fccce2edd124ce1d3dd927261fe1c0f);
+            
+    
+            var marker_e625da503a0fabde52f32a8f853b8f07 = L.marker(
+                [37.50317575641569, 126.92334937506511],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_f7914d83e6bcffd6c99c6755db82fde1 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_9f012c8fd3ba33249a882eaa90a93ae8 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_f4b6d4b4f2ada00c8f6422f369b5ef82 = $(`<div id="html_f4b6d4b4f2ada00c8f6422f369b5ef82" style="width: 100.0%; height: 100.0%;"><b>지번: 동작구 대방동</b><br><b>매가: 33억원</b><br>대지: 65평<br>연식: 2016년<br>용도: 단독주택<br>층수: -1/3</div>`)[0];
+                popup_9f012c8fd3ba33249a882eaa90a93ae8.setContent(html_f4b6d4b4f2ada00c8f6422f369b5ef82);
+            
+        
+
+        marker_e625da503a0fabde52f32a8f853b8f07.bindPopup(popup_9f012c8fd3ba33249a882eaa90a93ae8)
+        ;
+
+        
+    
+    
+            marker_e625da503a0fabde52f32a8f853b8f07.bindTooltip(
+                `<div>
+                     동작구 대방동 | 33억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_e625da503a0fabde52f32a8f853b8f07.setIcon(icon_f7914d83e6bcffd6c99c6755db82fde1);
+            
+    
+            var marker_92e1004fd0b7a60119d9fac2e34b380d = L.marker(
+                [37.49063097620825, 126.96365664669017],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_b7687a4e4a2d0706f4f507092800eebc = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_e8592c2a3cb3b692a5baa70c604b1d3e = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_7e91a76846f3bc510be6e0fa6facdc5a = $(`<div id="html_7e91a76846f3bc510be6e0fa6facdc5a" style="width: 100.0%; height: 100.0%;"><b>지번: 동작구 사당동</b><br><b>매가: 30억원</b><br>대지: 48평<br>연식: 2023년<br>용도: 단독주택<br>층수: -0/5</div>`)[0];
+                popup_e8592c2a3cb3b692a5baa70c604b1d3e.setContent(html_7e91a76846f3bc510be6e0fa6facdc5a);
+            
+        
+
+        marker_92e1004fd0b7a60119d9fac2e34b380d.bindPopup(popup_e8592c2a3cb3b692a5baa70c604b1d3e)
+        ;
+
+        
+    
+    
+            marker_92e1004fd0b7a60119d9fac2e34b380d.bindTooltip(
+                `<div>
+                     동작구 사당동 | 30억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_92e1004fd0b7a60119d9fac2e34b380d.setIcon(icon_b7687a4e4a2d0706f4f507092800eebc);
+            
+    
+            var marker_3abbc6a77861208c49c4305c894bc9fc = L.marker(
+                [37.49120096295337, 126.9046428556947],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_0c567c7fc643b41e02794a6e36627600 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_d87fa3f40fd89ad42c16c3f5c2cce9b5 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_5744a28ea45f83510a658b611b558e16 = $(`<div id="html_5744a28ea45f83510a658b611b558e16" style="width: 100.0%; height: 100.0%;"><b>지번: 대림동 873-23</b><br><b>매가: 12.5억원</b><br>대지: 0평<br>연식: 1990년<br>용도: 단독주택<br>층수: -1/2</div>`)[0];
+                popup_d87fa3f40fd89ad42c16c3f5c2cce9b5.setContent(html_5744a28ea45f83510a658b611b558e16);
+            
+        
+
+        marker_3abbc6a77861208c49c4305c894bc9fc.bindPopup(popup_d87fa3f40fd89ad42c16c3f5c2cce9b5)
+        ;
+
+        
+    
+    
+            marker_3abbc6a77861208c49c4305c894bc9fc.bindTooltip(
+                `<div>
+                     대림동 873-23 | 12.5억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_3abbc6a77861208c49c4305c894bc9fc.setIcon(icon_0c567c7fc643b41e02794a6e36627600);
+            
+    
+            var marker_f76c319d215cc164b3f83c2d2f9b6d73 = L.marker(
+                [37.50283773357637, 126.88690255773565],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_b568807bdb7e1a3a764727ab61ae530e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_538ebee168875ed18359a09cd8ba792c = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_013853ec7ee107d55675ce71c59a53d0 = $(`<div id="html_013853ec7ee107d55675ce71c59a53d0" style="width: 100.0%; height: 100.0%;"><b>지번: 구로동 552-36</b><br><b>매가: 7.5억원</b><br>대지: 26평<br>연식: 1987년<br>용도: 단독주택<br>층수: -1/2</div>`)[0];
+                popup_538ebee168875ed18359a09cd8ba792c.setContent(html_013853ec7ee107d55675ce71c59a53d0);
+            
+        
+
+        marker_f76c319d215cc164b3f83c2d2f9b6d73.bindPopup(popup_538ebee168875ed18359a09cd8ba792c)
+        ;
+
+        
+    
+    
+            marker_f76c319d215cc164b3f83c2d2f9b6d73.bindTooltip(
+                `<div>
+                     구로동 552-36 | 7.5억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_f76c319d215cc164b3f83c2d2f9b6d73.setIcon(icon_b568807bdb7e1a3a764727ab61ae530e);
+            
+    
+            var marker_570355709f84a185b9747fe368056191 = L.marker(
+                [37.49853137259055, 126.88505569255565],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_b25fb62eb7420a71aadb0c84eaf6c97d = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_df0b6e9b895d4b229ecfc4c0c03d7119 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_28135c338a1d2cf9ed64c132fa88e393 = $(`<div id="html_28135c338a1d2cf9ed64c132fa88e393" style="width: 100.0%; height: 100.0%;"><b>지번: 구로동 506-5</b><br><b>매가: 14억원</b><br>대지: 67평<br>연식: 1983년<br>용도: 주택<br>층수: -1/2</div>`)[0];
+                popup_df0b6e9b895d4b229ecfc4c0c03d7119.setContent(html_28135c338a1d2cf9ed64c132fa88e393);
+            
+        
+
+        marker_570355709f84a185b9747fe368056191.bindPopup(popup_df0b6e9b895d4b229ecfc4c0c03d7119)
+        ;
+
+        
+    
+    
+            marker_570355709f84a185b9747fe368056191.bindTooltip(
+                `<div>
+                     구로동 506-5 | 14억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_570355709f84a185b9747fe368056191.setIcon(icon_b25fb62eb7420a71aadb0c84eaf6c97d);
+            
+    
+            var marker_4b562c9376e5a5e3b486f93f972993e8 = L.marker(
+                [37.47816830189831, 126.90193759302375],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_e940f528b2012ed5b9b278fd4525e37e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_f7f2d72784fb2b4674a17cfb50d76b2e = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_74ea611412e03991d790009d349cbc6f = $(`<div id="html_74ea611412e03991d790009d349cbc6f" style="width: 100.0%; height: 100.0%;"><b>지번: 독산동 958-106,</b><br><b>매가: 33.8억원</b><br>대지: 135평<br>연식: 1974년<br>용도: 주택<br>층수: -1/2</div>`)[0];
+                popup_f7f2d72784fb2b4674a17cfb50d76b2e.setContent(html_74ea611412e03991d790009d349cbc6f);
+            
+        
+
+        marker_4b562c9376e5a5e3b486f93f972993e8.bindPopup(popup_f7f2d72784fb2b4674a17cfb50d76b2e)
+        ;
+
+        
+    
+    
+            marker_4b562c9376e5a5e3b486f93f972993e8.bindTooltip(
+                `<div>
+                     독산동 958-106, | 33.8억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_4b562c9376e5a5e3b486f93f972993e8.setIcon(icon_e940f528b2012ed5b9b278fd4525e37e);
+            
+    
+            var marker_1e17e9c394d38567ea7176b63634a739 = L.marker(
+                [37.37317054160448, 126.95812265239661],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_0bced12bd5b83f4bc3e72a113a1c498f = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_35441cae0ca9815191f8c2d83523722a = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_eb6e092e607cef8e9d7b0209f301eab5 = $(`<div id="html_eb6e092e607cef8e9d7b0209f301eab5" style="width: 100.0%; height: 100.0%;"><b>지번: 동안구 호계동</b><br><b>매가: 90억원</b><br>대지: 149평<br>연식: 1992년<br>용도: 근린생활시설, 교육연구시설, 운동시설<br>층수: -1/5</div>`)[0];
+                popup_35441cae0ca9815191f8c2d83523722a.setContent(html_eb6e092e607cef8e9d7b0209f301eab5);
+            
+        
+
+        marker_1e17e9c394d38567ea7176b63634a739.bindPopup(popup_35441cae0ca9815191f8c2d83523722a)
+        ;
+
+        
+    
+    
+            marker_1e17e9c394d38567ea7176b63634a739.bindTooltip(
+                `<div>
+                     동안구 호계동 | 90억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_1e17e9c394d38567ea7176b63634a739.setIcon(icon_0bced12bd5b83f4bc3e72a113a1c498f);
+            
+    
+            var marker_850a215bb7a1577f56dd9ed8a5eb7394 = L.marker(
+                [37.50408255539238, 126.8652402628923],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_676dc97f2157a2a60efb408417785ae7 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_cf5df05aa5fc105d1aa422a2c626eda3 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_0a7346fcfb8831a2d694af945201f4ed = $(`<div id="html_0a7346fcfb8831a2d694af945201f4ed" style="width: 100.0%; height: 100.0%;"><b>지번: 고척동 57-43</b><br><b>매가: 8.3억원</b><br>대지: 0평<br>연식: 1990년<br>용도: 단독주택<br>층수: -1/2</div>`)[0];
+                popup_cf5df05aa5fc105d1aa422a2c626eda3.setContent(html_0a7346fcfb8831a2d694af945201f4ed);
+            
+        
+
+        marker_850a215bb7a1577f56dd9ed8a5eb7394.bindPopup(popup_cf5df05aa5fc105d1aa422a2c626eda3)
+        ;
+
+        
+    
+    
+            marker_850a215bb7a1577f56dd9ed8a5eb7394.bindTooltip(
+                `<div>
+                     고척동 57-43 | 8.3억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_850a215bb7a1577f56dd9ed8a5eb7394.setIcon(icon_676dc97f2157a2a60efb408417785ae7);
+            
+    
+            var marker_057162903fae5b87f698ce8a34e725e3 = L.marker(
+                [38.254409141770026, 127.47993763322114],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_df5f586693a289cee465099712c7d0ed = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_41cbf1359a46b1f1bbcdce360365fd5a = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_b9573e512b3e7d5764a2cd3a1e361ef2 = $(`<div id="html_b9573e512b3e7d5764a2cd3a1e361ef2" style="width: 100.0%; height: 100.0%;"><b>지번: 철원군 사곡리 204</b><br><b>매가: 2.1억원</b><br>대지: 1428평</div>`)[0];
+                popup_41cbf1359a46b1f1bbcdce360365fd5a.setContent(html_b9573e512b3e7d5764a2cd3a1e361ef2);
+            
+        
+
+        marker_057162903fae5b87f698ce8a34e725e3.bindPopup(popup_41cbf1359a46b1f1bbcdce360365fd5a)
+        ;
+
+        
+    
+    
+            marker_057162903fae5b87f698ce8a34e725e3.bindTooltip(
+                `<div>
+                     철원군 사곡리 204 | 2.1억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_057162903fae5b87f698ce8a34e725e3.setIcon(icon_df5f586693a289cee465099712c7d0ed);
+            
+    
+            var marker_9d60386dfc986a15ace3b6274b9e3a32 = L.marker(
+                [37.50284832124616, 126.8656208435977],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_aa77c78285d0fb4288381e36b848288c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_2bef9f1ef789b404480665404a9ecabf = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_595afb185960fc78f2f146f18afd6e8e = $(`<div id="html_595afb185960fc78f2f146f18afd6e8e" style="width: 100.0%; height: 100.0%;"><b>지번: 고척동 52-183</b><br><b>매가: 9억원</b><br>대지: 0평<br>연식: 1988년<br>용도: 단독주택<br>층수: -1/2</div>`)[0];
+                popup_2bef9f1ef789b404480665404a9ecabf.setContent(html_595afb185960fc78f2f146f18afd6e8e);
+            
+        
+
+        marker_9d60386dfc986a15ace3b6274b9e3a32.bindPopup(popup_2bef9f1ef789b404480665404a9ecabf)
+        ;
+
+        
+    
+    
+            marker_9d60386dfc986a15ace3b6274b9e3a32.bindTooltip(
+                `<div>
+                     고척동 52-183 | 9억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_9d60386dfc986a15ace3b6274b9e3a32.setIcon(icon_aa77c78285d0fb4288381e36b848288c);
+            
+    
+            var marker_b96d5919b1c02c2725bf45959b114b89 = L.marker(
+                [37.47539251167752, 126.89549613017516],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_83c8b834230655dbf01b188c18709e1e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_1607465f0bfff81b0695ff3ee74b306b = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_7b8731acfcd7901ed3533b0ef6fad853 = $(`<div id="html_7b8731acfcd7901ed3533b0ef6fad853" style="width: 100.0%; height: 100.0%;"><b>지번: 가산동 149-52</b><br><b>매가: 14억원</b><br>대지: 0평<br>연식: 1976년<br>용도: 공동주택<br>층수: -1/2</div>`)[0];
+                popup_1607465f0bfff81b0695ff3ee74b306b.setContent(html_7b8731acfcd7901ed3533b0ef6fad853);
+            
+        
+
+        marker_b96d5919b1c02c2725bf45959b114b89.bindPopup(popup_1607465f0bfff81b0695ff3ee74b306b)
+        ;
+
+        
+    
+    
+            marker_b96d5919b1c02c2725bf45959b114b89.bindTooltip(
+                `<div>
+                     가산동 149-52 | 14억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_b96d5919b1c02c2725bf45959b114b89.setIcon(icon_83c8b834230655dbf01b188c18709e1e);
+            
+    
+            var marker_5a774b3dbb558a2d2fbdeeb828573fb2 = L.marker(
+                [37.487212054787676, 126.98987460150494],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_030dee7f743cd1eafbd6380e668a5647 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_f90a389b33f6c2cbf123f21c42185479 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_c1dac224abbcb095061f7ad3754fa62e = $(`<div id="html_c1dac224abbcb095061f7ad3754fa62e" style="width: 100.0%; height: 100.0%;"><b>지번: 방배동 869-18</b><br><b>매가: 38억원</b><br>대지: 48평<br>연식: 1997년<br>용도: 다가구용단독주택<br>층수: -1/3</div>`)[0];
+                popup_f90a389b33f6c2cbf123f21c42185479.setContent(html_c1dac224abbcb095061f7ad3754fa62e);
+            
+        
+
+        marker_5a774b3dbb558a2d2fbdeeb828573fb2.bindPopup(popup_f90a389b33f6c2cbf123f21c42185479)
+        ;
+
+        
+    
+    
+            marker_5a774b3dbb558a2d2fbdeeb828573fb2.bindTooltip(
+                `<div>
+                     방배동 869-18 | 38억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_5a774b3dbb558a2d2fbdeeb828573fb2.setIcon(icon_030dee7f743cd1eafbd6380e668a5647);
+            
+    
+            var marker_df2ee7d888fbaef13c130f3dea6d49f0 = L.marker(
+                [37.503812257422226, 126.84383889060135],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_567603233b7f490e5583ba1e0ab684ab = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_f0862ab17f10d7e21bfb73165e57bd53 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_dd0f2bceeb8aa51861346c5dcf66c2f4 = $(`<div id="html_dd0f2bceeb8aa51861346c5dcf66c2f4" style="width: 100.0%; height: 100.0%;"><b>지번: 개봉동 10-33</b><br><b>매가: 13억원</b><br>대지: 69평<br>연식: 1989년<br>용도: 주택<br>층수: -1/2</div>`)[0];
+                popup_f0862ab17f10d7e21bfb73165e57bd53.setContent(html_dd0f2bceeb8aa51861346c5dcf66c2f4);
+            
+        
+
+        marker_df2ee7d888fbaef13c130f3dea6d49f0.bindPopup(popup_f0862ab17f10d7e21bfb73165e57bd53)
+        ;
+
+        
+    
+    
+            marker_df2ee7d888fbaef13c130f3dea6d49f0.bindTooltip(
+                `<div>
+                     개봉동 10-33 | 13억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_df2ee7d888fbaef13c130f3dea6d49f0.setIcon(icon_567603233b7f490e5583ba1e0ab684ab);
+            
+    
+            var marker_a766136dc647b7bc6efc7e651a8a226a = L.marker(
+                [37.52626793491065, 126.85483622879238],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_94c566f9624a8806ae8a330fcc48f7af = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_bae89be8cf5bd6ac27222149e13fc93b = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_a70777c089871fcd271eae59e4ac7f4a = $(`<div id="html_a70777c089871fcd271eae59e4ac7f4a" style="width: 100.0%; height: 100.0%;"><b>지번: 신정동 920-5</b><br><b>매가: 10억원</b><br>대지: 32평<br>연식: 1993년<br>용도: 단독주택<br>층수: -1/2</div>`)[0];
+                popup_bae89be8cf5bd6ac27222149e13fc93b.setContent(html_a70777c089871fcd271eae59e4ac7f4a);
+            
+        
+
+        marker_a766136dc647b7bc6efc7e651a8a226a.bindPopup(popup_bae89be8cf5bd6ac27222149e13fc93b)
+        ;
+
+        
+    
+    
+            marker_a766136dc647b7bc6efc7e651a8a226a.bindTooltip(
+                `<div>
+                     신정동 920-5 | 10억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_a766136dc647b7bc6efc7e651a8a226a.setIcon(icon_94c566f9624a8806ae8a330fcc48f7af);
+            
+    
+            var marker_19161af9aecf39fc9a99e23afb918bd4 = L.marker(
+                [37.50299135528486, 126.95061570084152],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_43595fd5da0cde4f3aac98365e70d1fb = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_8978d29c46d6380b6d87e13e8f62bf68 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_81dc53e65e96e7bb24230140e4dd6578 = $(`<div id="html_81dc53e65e96e7bb24230140e4dd6578" style="width: 100.0%; height: 100.0%;"><b>지번: 동작구 상도1동</b><br><b>매가: 38억원</b><br>대지: 62평<br>연식: 2019년<br>용도: 다중주택 및 근린생활시설<br>층수: -1/4</div>`)[0];
+                popup_8978d29c46d6380b6d87e13e8f62bf68.setContent(html_81dc53e65e96e7bb24230140e4dd6578);
+            
+        
+
+        marker_19161af9aecf39fc9a99e23afb918bd4.bindPopup(popup_8978d29c46d6380b6d87e13e8f62bf68)
+        ;
+
+        
+    
+    
+            marker_19161af9aecf39fc9a99e23afb918bd4.bindTooltip(
+                `<div>
+                     동작구 상도1동 | 38억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_19161af9aecf39fc9a99e23afb918bd4.setIcon(icon_43595fd5da0cde4f3aac98365e70d1fb);
+            
+    
+            var marker_c230d124ec7cc4b37f98e2b17050aad8 = L.marker(
+                [37.484267795502106, 126.91797425684919],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_140ccbd9741156f34e99523be595669c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_9b366625f98f9a1e7f1ac1cfcb60f837 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_ca02b9473655243ed19a376fc3dd779c = $(`<div id="html_ca02b9473655243ed19a376fc3dd779c" style="width: 100.0%; height: 100.0%;"><b>지번: 신림동 505-15</b><br><b>매가: 19.5억원</b><br>대지: 61평<br>연식: 2018년<br>용도: 단독주택<br>층수: -1/3</div>`)[0];
+                popup_9b366625f98f9a1e7f1ac1cfcb60f837.setContent(html_ca02b9473655243ed19a376fc3dd779c);
+            
+        
+
+        marker_c230d124ec7cc4b37f98e2b17050aad8.bindPopup(popup_9b366625f98f9a1e7f1ac1cfcb60f837)
+        ;
+
+        
+    
+    
+            marker_c230d124ec7cc4b37f98e2b17050aad8.bindTooltip(
+                `<div>
+                     신림동 505-15 | 19.5억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_c230d124ec7cc4b37f98e2b17050aad8.setIcon(icon_140ccbd9741156f34e99523be595669c);
+            
+    
+            var marker_5f7f96d0dde8d62c0e0f70788d020853 = L.marker(
+                [37.4767896620971, 126.90208886461323],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_237d07cd534bb326777d212bb0f0962f = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_5b0f7f11f399be6e7b8cfa90445b225f = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_f685a9911335b3a6223a255c1ec5bae3 = $(`<div id="html_f685a9911335b3a6223a255c1ec5bae3" style="width: 100.0%; height: 100.0%;"><b>지번: 독산동 963-12</b><br><b>매가: 7억원</b><br>대지: 35평<br>연식: 1991년<br>용도: 단독주택<br>층수: -1/2</div>`)[0];
+                popup_5b0f7f11f399be6e7b8cfa90445b225f.setContent(html_f685a9911335b3a6223a255c1ec5bae3);
+            
+        
+
+        marker_5f7f96d0dde8d62c0e0f70788d020853.bindPopup(popup_5b0f7f11f399be6e7b8cfa90445b225f)
+        ;
+
+        
+    
+    
+            marker_5f7f96d0dde8d62c0e0f70788d020853.bindTooltip(
+                `<div>
+                     독산동 963-12 | 7억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_5f7f96d0dde8d62c0e0f70788d020853.setIcon(icon_237d07cd534bb326777d212bb0f0962f);
+            
+    
+            var marker_2692ccee5e57ec7a7fbdc13b0f295661 = L.marker(
+                [37.49038958116538, 126.98075640214529],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_52d63420fcca46595b03d4e8657c1d76 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_04445f70824a82a23e0041ae716dc7bc = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_04f526677902dc47e5e52a048151c867 = $(`<div id="html_04f526677902dc47e5e52a048151c867" style="width: 100.0%; height: 100.0%;"><b>지번: 동작구 사당동</b><br><b>매가: 42억원</b><br>대지: 91평<br>연식: 1983년<br>용도: 제1종근린생활시설<br>층수: -1/4</div>`)[0];
+                popup_04445f70824a82a23e0041ae716dc7bc.setContent(html_04f526677902dc47e5e52a048151c867);
+            
+        
+
+        marker_2692ccee5e57ec7a7fbdc13b0f295661.bindPopup(popup_04445f70824a82a23e0041ae716dc7bc)
+        ;
+
+        
+    
+    
+            marker_2692ccee5e57ec7a7fbdc13b0f295661.bindTooltip(
+                `<div>
+                     동작구 사당동 | 42억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_2692ccee5e57ec7a7fbdc13b0f295661.setIcon(icon_52d63420fcca46595b03d4e8657c1d76);
+            
+    
+            var marker_c26c32946d029611aef68765a41cbad6 = L.marker(
+                [37.48699486578907, 126.93842359295172],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_2a09afc27dcbb4d11edb06d461efae08 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_55d2011cc81e8fae25cc4c090dd2eb54 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_9360ee6f5550954773ded31663014c59 = $(`<div id="html_9360ee6f5550954773ded31663014c59" style="width: 100.0%; height: 100.0%;"><b>지번: 봉천동 953-14</b><br><b>매가: 15억원</b><br>대지: 53평<br>연식: 1992년<br>용도: 다가구용단독주택(8가구) <br>층수: -1/2</div>`)[0];
+                popup_55d2011cc81e8fae25cc4c090dd2eb54.setContent(html_9360ee6f5550954773ded31663014c59);
+            
+        
+
+        marker_c26c32946d029611aef68765a41cbad6.bindPopup(popup_55d2011cc81e8fae25cc4c090dd2eb54)
+        ;
+
+        
+    
+    
+            marker_c26c32946d029611aef68765a41cbad6.bindTooltip(
+                `<div>
+                     봉천동 953-14 | 15억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_c26c32946d029611aef68765a41cbad6.setIcon(icon_2a09afc27dcbb4d11edb06d461efae08);
+            
+    
+            var marker_92d02432be48961fb2567b91c5fcc6d6 = L.marker(
+                [37.49368892156567, 126.98363414781225],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_f65977b7fcc4ff4f376016b9e120370b = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_5607cf46896b8fdc67948504dc70b405 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_cdc98dfa8b71fd2b43a1a0f8e87de544 = $(`<div id="html_cdc98dfa8b71fd2b43a1a0f8e87de544" style="width: 100.0%; height: 100.0%;"><b>지번: 방배동 782-8</b><br><b>매가: 37억원</b><br>대지: 64평<br>연식: 1995년<br>용도: 단독주택<br>층수: -1/3</div>`)[0];
+                popup_5607cf46896b8fdc67948504dc70b405.setContent(html_cdc98dfa8b71fd2b43a1a0f8e87de544);
+            
+        
+
+        marker_92d02432be48961fb2567b91c5fcc6d6.bindPopup(popup_5607cf46896b8fdc67948504dc70b405)
+        ;
+
+        
+    
+    
+            marker_92d02432be48961fb2567b91c5fcc6d6.bindTooltip(
+                `<div>
+                     방배동 782-8 | 37억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_92d02432be48961fb2567b91c5fcc6d6.setIcon(icon_f65977b7fcc4ff4f376016b9e120370b);
+            
+    
+            var marker_2198993e6ce6e0b6ec5284397e8fbdd4 = L.marker(
+                [37.480046859729384, 126.97850329119444],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_496fb4c45c51f46a8d63ea130900aed2 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_cea7582132180ee691c77f2bd321968d = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_6257e3faeee7ba47fcbd07a32553e99c = $(`<div id="html_6257e3faeee7ba47fcbd07a32553e99c" style="width: 100.0%; height: 100.0%;"><b>지번: 동작구 사당동</b><br><b>매가: 23억원</b><br>대지: 39평<br>연식: 2011년<br>용도: 근생주택<br>층수: -1/4</div>`)[0];
+                popup_cea7582132180ee691c77f2bd321968d.setContent(html_6257e3faeee7ba47fcbd07a32553e99c);
+            
+        
+
+        marker_2198993e6ce6e0b6ec5284397e8fbdd4.bindPopup(popup_cea7582132180ee691c77f2bd321968d)
+        ;
+
+        
+    
+    
+            marker_2198993e6ce6e0b6ec5284397e8fbdd4.bindTooltip(
+                `<div>
+                     동작구 사당동 | 23억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_2198993e6ce6e0b6ec5284397e8fbdd4.setIcon(icon_496fb4c45c51f46a8d63ea130900aed2);
+            
+    
+            var marker_be61bbf1127f6d13a6c132808c68feb0 = L.marker(
+                [37.49030166314935, 126.98576910921128],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_925b87d6812ccb22f0f023fa8537a368 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_2c3c9ca103db59d1e3d81fae5f0e056f = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_8e31cc42cb12b9bdc5a12aade952443a = $(`<div id="html_8e31cc42cb12b9bdc5a12aade952443a" style="width: 100.0%; height: 100.0%;"><b>지번: 방배동 823-11</b><br><b>매가: 25억원</b><br>대지: 47평<br>연식: 2011년<br>용도: 다가구주택<br>층수: 0/4</div>`)[0];
+                popup_2c3c9ca103db59d1e3d81fae5f0e056f.setContent(html_8e31cc42cb12b9bdc5a12aade952443a);
+            
+        
+
+        marker_be61bbf1127f6d13a6c132808c68feb0.bindPopup(popup_2c3c9ca103db59d1e3d81fae5f0e056f)
+        ;
+
+        
+    
+    
+            marker_be61bbf1127f6d13a6c132808c68feb0.bindTooltip(
+                `<div>
+                     방배동 823-11 | 25억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_be61bbf1127f6d13a6c132808c68feb0.setIcon(icon_925b87d6812ccb22f0f023fa8537a368);
+            
+    
+            var marker_18f7465c04da4a01609825cb00979980 = L.marker(
+                [37.4873856835249, 126.92079930975652],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_d771e149f9d67b819066eff144caf6bf = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_1630f34ff63513dc61d4b2a30b275193 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_62256911bd6d25802b8ed3c6b9250830 = $(`<div id="html_62256911bd6d25802b8ed3c6b9250830" style="width: 100.0%; height: 100.0%;"><b>지번: 신림동 471-2</b><br><b>매가: 25억원</b><br>대지: 52평<br>연식: 2017년<br>용도: 단독주택<br>층수: -1/3</div>`)[0];
+                popup_1630f34ff63513dc61d4b2a30b275193.setContent(html_62256911bd6d25802b8ed3c6b9250830);
+            
+        
+
+        marker_18f7465c04da4a01609825cb00979980.bindPopup(popup_1630f34ff63513dc61d4b2a30b275193)
+        ;
+
+        
+    
+    
+            marker_18f7465c04da4a01609825cb00979980.bindTooltip(
+                `<div>
+                     신림동 471-2 | 25억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_18f7465c04da4a01609825cb00979980.setIcon(icon_d771e149f9d67b819066eff144caf6bf);
+            
+    
+            var marker_dc72131c5e50ca818d94fec0a2dd1ad5 = L.marker(
+                [37.47677355691962, 126.97334465279579],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_25e3a89a79db23238d0726743908b38e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_866a118b4f02390401b1129310ee6ee7 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_bbb5970dd1d7ea7f3cef62995c6d70a8 = $(`<div id="html_bbb5970dd1d7ea7f3cef62995c6d70a8" style="width: 100.0%; height: 100.0%;"><b>지번: 동작구 사당동</b><br><b>매가: 50억원</b><br>대지: 0평<br>연식: 1975년<br>용도: 제2종근린생활시설<br>층수: -1/2</div>`)[0];
+                popup_866a118b4f02390401b1129310ee6ee7.setContent(html_bbb5970dd1d7ea7f3cef62995c6d70a8);
+            
+        
+
+        marker_dc72131c5e50ca818d94fec0a2dd1ad5.bindPopup(popup_866a118b4f02390401b1129310ee6ee7)
+        ;
+
+        
+    
+    
+            marker_dc72131c5e50ca818d94fec0a2dd1ad5.bindTooltip(
+                `<div>
+                     동작구 사당동 | 50억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_dc72131c5e50ca818d94fec0a2dd1ad5.setIcon(icon_25e3a89a79db23238d0726743908b38e);
+            
+    
+            var marker_6a1bf30f112a69e7285c3f6d5f931fde = L.marker(
+                [37.47365563202359, 126.97709350262997],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_35a71ccea1925c85d617d4915ce93237 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_68c37a17850a55cf82393526925ddced = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_563880622ce5cc07aa34485e760e6a28 = $(`<div id="html_563880622ce5cc07aa34485e760e6a28" style="width: 100.0%; height: 100.0%;"><b>지번: 남현동 1085-15</b><br><b>매가: 27억원</b><br>대지: 43평<br>연식: 2003년<br>용도: 단독주택<br>층수: -1/3</div>`)[0];
+                popup_68c37a17850a55cf82393526925ddced.setContent(html_563880622ce5cc07aa34485e760e6a28);
+            
+        
+
+        marker_6a1bf30f112a69e7285c3f6d5f931fde.bindPopup(popup_68c37a17850a55cf82393526925ddced)
+        ;
+
+        
+    
+    
+            marker_6a1bf30f112a69e7285c3f6d5f931fde.bindTooltip(
+                `<div>
+                     남현동 1085-15 | 27억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_6a1bf30f112a69e7285c3f6d5f931fde.setIcon(icon_35a71ccea1925c85d617d4915ce93237);
+            
+    
+            var marker_42909718418fde9761bdbe59888124ee = L.marker(
+                [37.4816690808714, 126.97629290147569],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_08295a1124053d5a6cf6719c1e42e677 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_277bd6f0ef5ba9f13bdd82f33b33c7ae = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_e559616e740187e04e61aef3d8b793f3 = $(`<div id="html_e559616e740187e04e61aef3d8b793f3" style="width: 100.0%; height: 100.0%;"><b>지번: 동작구 사당동</b><br><b>매가: 12.9억원</b><br>대지: 0평<br>연식: 1990년<br>용도: 단독주택<br>층수: -1/2</div>`)[0];
+                popup_277bd6f0ef5ba9f13bdd82f33b33c7ae.setContent(html_e559616e740187e04e61aef3d8b793f3);
+            
+        
+
+        marker_42909718418fde9761bdbe59888124ee.bindPopup(popup_277bd6f0ef5ba9f13bdd82f33b33c7ae)
+        ;
+
+        
+    
+    
+            marker_42909718418fde9761bdbe59888124ee.bindTooltip(
+                `<div>
+                     동작구 사당동 | 12.9억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_42909718418fde9761bdbe59888124ee.setIcon(icon_08295a1124053d5a6cf6719c1e42e677);
+            
+    
+            var marker_257cd4e5f50eeb3709e2d959a5da3d40 = L.marker(
+                [37.509776072486034, 126.89652422952186],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_5cf00bd39f74a3619b0a7678a8720cbf = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_cc54a3646c1887b5dfbb31ddded34f42 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_16bf49221558aa1a2651e08f8257e2ff = $(`<div id="html_16bf49221558aa1a2651e08f8257e2ff" style="width: 100.0%; height: 100.0%;"><b>지번: 도림동 205-39</b><br><b>매가: 11.4억원</b><br>대지: 0평<br>연식: 1992년<br>용도: 단독주택<br>층수: -1/2</div>`)[0];
+                popup_cc54a3646c1887b5dfbb31ddded34f42.setContent(html_16bf49221558aa1a2651e08f8257e2ff);
+            
+        
+
+        marker_257cd4e5f50eeb3709e2d959a5da3d40.bindPopup(popup_cc54a3646c1887b5dfbb31ddded34f42)
+        ;
+
+        
+    
+    
+            marker_257cd4e5f50eeb3709e2d959a5da3d40.bindTooltip(
+                `<div>
+                     도림동 205-39 | 11.4억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_257cd4e5f50eeb3709e2d959a5da3d40.setIcon(icon_5cf00bd39f74a3619b0a7678a8720cbf);
+            
+    
+            var marker_3aca1a15d822f9bee5dc388e104d745b = L.marker(
+                [37.50006338555002, 126.93495794357645],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_722653ae3584826fe11507b6768f0407 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_db2435d357afc418c3eb36ef17759cb9 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_0d192cf72dd2fc9b9b140bb63093c4be = $(`<div id="html_0d192cf72dd2fc9b9b140bb63093c4be" style="width: 100.0%; height: 100.0%;"><b>지번: 동작구 상도동</b><br><b>매가: 17.9억원</b><br>대지: 0평<br>연식: 1989년<br>용도: 단독주택<br>층수: -1/2</div>`)[0];
+                popup_db2435d357afc418c3eb36ef17759cb9.setContent(html_0d192cf72dd2fc9b9b140bb63093c4be);
+            
+        
+
+        marker_3aca1a15d822f9bee5dc388e104d745b.bindPopup(popup_db2435d357afc418c3eb36ef17759cb9)
+        ;
+
+        
+    
+    
+            marker_3aca1a15d822f9bee5dc388e104d745b.bindTooltip(
+                `<div>
+                     동작구 상도동 | 17.9억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_3aca1a15d822f9bee5dc388e104d745b.setIcon(icon_722653ae3584826fe11507b6768f0407);
+            
+    
+            var marker_3f39054d8c176c5583ba3b6f305cdf90 = L.marker(
+                [37.480988014853686, 126.97409314272639],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_290b0ac7084c3205e77e8a3f9d4ba4c3 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_a63bcf71038b752e4f169f64dbdbe265 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_50b44b7a05dbcb7158b94f8a4e9674ac = $(`<div id="html_50b44b7a05dbcb7158b94f8a4e9674ac" style="width: 100.0%; height: 100.0%;"><b>지번: 동작구 사당동</b><br><b>매가: 45억원</b><br>대지: 62평<br>연식: 2020년<br>용도: 단독(다중)주택및제2종근린생활시설[사무소]<br>층수: -1/4</div>`)[0];
+                popup_a63bcf71038b752e4f169f64dbdbe265.setContent(html_50b44b7a05dbcb7158b94f8a4e9674ac);
+            
+        
+
+        marker_3f39054d8c176c5583ba3b6f305cdf90.bindPopup(popup_a63bcf71038b752e4f169f64dbdbe265)
+        ;
+
+        
+    
+    
+            marker_3f39054d8c176c5583ba3b6f305cdf90.bindTooltip(
+                `<div>
+                     동작구 사당동 | 45억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_3f39054d8c176c5583ba3b6f305cdf90.setIcon(icon_290b0ac7084c3205e77e8a3f9d4ba4c3);
+            
+    
+            var marker_f92a768b698367615a945681d73cfc86 = L.marker(
+                [37.47444255599244, 126.97578393419374],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_edc4f7e10ae93e82bb1669e1effca624 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_5de067ee720eb2a010e8ece3a0e137c9 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_b8f649836f9745e256c4828eba6b6e8b = $(`<div id="html_b8f649836f9745e256c4828eba6b6e8b" style="width: 100.0%; height: 100.0%;"><b>지번: 남현동 1081-8</b><br><b>매가: 27.5억원</b><br>대지: 55평<br>연식: 2012년<br>용도: 단독주택<br>층수: -1/3</div>`)[0];
+                popup_5de067ee720eb2a010e8ece3a0e137c9.setContent(html_b8f649836f9745e256c4828eba6b6e8b);
+            
+        
+
+        marker_f92a768b698367615a945681d73cfc86.bindPopup(popup_5de067ee720eb2a010e8ece3a0e137c9)
+        ;
+
+        
+    
+    
+            marker_f92a768b698367615a945681d73cfc86.bindTooltip(
+                `<div>
+                     남현동 1081-8 | 27.5억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_f92a768b698367615a945681d73cfc86.setIcon(icon_edc4f7e10ae93e82bb1669e1effca624);
+            
+    
+            var marker_cee177bdf458bc70d02c7c3568e155f9 = L.marker(
+                [37.48053796711601, 126.97138454748364],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_f440bd7249ea143d01d0c7f0d4d82ee0 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_eca7764b255d189545919c77e585865f = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_ed5752c41954b565a4587ff541bb0af7 = $(`<div id="html_ed5752c41954b565a4587ff541bb0af7" style="width: 100.0%; height: 100.0%;"><b>지번: 동작구 사당동</b><br><b>매가: 30억원</b><br>대지: 0평<br>연식: 1982년<br>용도: 주택<br>층수: -1/2</div>`)[0];
+                popup_eca7764b255d189545919c77e585865f.setContent(html_ed5752c41954b565a4587ff541bb0af7);
+            
+        
+
+        marker_cee177bdf458bc70d02c7c3568e155f9.bindPopup(popup_eca7764b255d189545919c77e585865f)
+        ;
+
+        
+    
+    
+            marker_cee177bdf458bc70d02c7c3568e155f9.bindTooltip(
+                `<div>
+                     동작구 사당동 | 30억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_cee177bdf458bc70d02c7c3568e155f9.setIcon(icon_f440bd7249ea143d01d0c7f0d4d82ee0);
+            
+    
+            var marker_1ea4881c3c03a8842c35550ab96cca34 = L.marker(
+                [37.488124611204846, 126.92311508984051],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_d40f2f0773fc70e7e1ac5cb04e38f9d0 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_b3cc1d42a8ecd43265b753dbfb95bb12 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_1f5ef0dc29fec3d1d20eecd3913217c0 = $(`<div id="html_1f5ef0dc29fec3d1d20eecd3913217c0" style="width: 100.0%; height: 100.0%;"><b>지번: 신림동 1452-34</b><br><b>매가: 20억원</b><br>대지: 59평<br>연식: 2018년<br>용도: 단독주택<br>층수: -1/3</div>`)[0];
+                popup_b3cc1d42a8ecd43265b753dbfb95bb12.setContent(html_1f5ef0dc29fec3d1d20eecd3913217c0);
+            
+        
+
+        marker_1ea4881c3c03a8842c35550ab96cca34.bindPopup(popup_b3cc1d42a8ecd43265b753dbfb95bb12)
+        ;
+
+        
+    
+    
+            marker_1ea4881c3c03a8842c35550ab96cca34.bindTooltip(
+                `<div>
+                     신림동 1452-34 | 20억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_1ea4881c3c03a8842c35550ab96cca34.setIcon(icon_d40f2f0773fc70e7e1ac5cb04e38f9d0);
+            
+    
+            var marker_85def75c1903989709dfe4a5484036e8 = L.marker(
+                [37.48539430694586, 126.94267272396529],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_a5c395303255765cb8c42307dac1715b = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_04d284cf6d6adf6b335cae807aa7a86c = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_d6069800c1ead9fd89dc7f1b89ca8846 = $(`<div id="html_d6069800c1ead9fd89dc7f1b89ca8846" style="width: 100.0%; height: 100.0%;"><b>지번: 봉천동 905-28</b><br><b>매가: 26억원</b><br>대지: 66평<br>연식: 2007년<br>용도: 제2종근린생활시설, 단독주택<br>층수: -1/5</div>`)[0];
+                popup_04d284cf6d6adf6b335cae807aa7a86c.setContent(html_d6069800c1ead9fd89dc7f1b89ca8846);
+            
+        
+
+        marker_85def75c1903989709dfe4a5484036e8.bindPopup(popup_04d284cf6d6adf6b335cae807aa7a86c)
+        ;
+
+        
+    
+    
+            marker_85def75c1903989709dfe4a5484036e8.bindTooltip(
+                `<div>
+                     봉천동 905-28 | 26억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_85def75c1903989709dfe4a5484036e8.setIcon(icon_a5c395303255765cb8c42307dac1715b);
+            
+    
+            var marker_0614e8e00d4c4ecc4480ba2e66d4871c = L.marker(
+                [37.59016423001259, 128.3051424976279],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_099ade44ddc220d285702828bd70b3de = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_c5f0d7cba31fb41eae06c394a17c5dcc = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_33420731c30f5e98692481f20bdd025d = $(`<div id="html_33420731c30f5e98692481f20bdd025d" style="width: 100.0%; height: 100.0%;"><b>지번: 평창군 무이리 1140-14</b><br><b>매가: 3억원</b><br>대지: 191평<br>연식: 2004년<br>용도: 숙박시설(기타일반숙박시설)<br>층수: 0/2</div>`)[0];
+                popup_c5f0d7cba31fb41eae06c394a17c5dcc.setContent(html_33420731c30f5e98692481f20bdd025d);
+            
+        
+
+        marker_0614e8e00d4c4ecc4480ba2e66d4871c.bindPopup(popup_c5f0d7cba31fb41eae06c394a17c5dcc)
+        ;
+
+        
+    
+    
+            marker_0614e8e00d4c4ecc4480ba2e66d4871c.bindTooltip(
+                `<div>
+                     평창군 무이리 1140-14 | 3억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_0614e8e00d4c4ecc4480ba2e66d4871c.setIcon(icon_099ade44ddc220d285702828bd70b3de);
+            
+    
+            var marker_ba6c7aecb402afa7a662efe0981b44ed = L.marker(
+                [37.47956902706895, 126.97130281230997],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_12c704a674f3d15e1c872a4faecc8cb7 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_23150f97ceb8b8adc71f5f3d7bb532a4 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_bd061fcb4ce6e45565df5a673865a9a9 = $(`<div id="html_bd061fcb4ce6e45565df5a673865a9a9" style="width: 100.0%; height: 100.0%;"><b>지번: 동작구 사당동</b><br><b>매가: 15억원</b><br>대지: 37평<br>연식: 1994년<br>용도: 근린생활시설 및 주택<br>층수: -1/3</div>`)[0];
+                popup_23150f97ceb8b8adc71f5f3d7bb532a4.setContent(html_bd061fcb4ce6e45565df5a673865a9a9);
+            
+        
+
+        marker_ba6c7aecb402afa7a662efe0981b44ed.bindPopup(popup_23150f97ceb8b8adc71f5f3d7bb532a4)
+        ;
+
+        
+    
+    
+            marker_ba6c7aecb402afa7a662efe0981b44ed.bindTooltip(
+                `<div>
+                     동작구 사당동 | 15억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_ba6c7aecb402afa7a662efe0981b44ed.setIcon(icon_12c704a674f3d15e1c872a4faecc8cb7);
+            
+    
+            var marker_f54674e52fe71338ee7d2faa18159d42 = L.marker(
+                [37.49793413294273, 126.94161826472671],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_af84deb8c463a1537ab6b09f93a6831e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_259bfc57073380902e61bfebdbf88a0b = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_95f5ff3aeb7a86092c58765adfb3e6b4 = $(`<div id="html_95f5ff3aeb7a86092c58765adfb3e6b4" style="width: 100.0%; height: 100.0%;"><b>지번: 동작구 상도동</b><br><b>매가: 20억원</b><br>대지: 50평<br>연식: 2018년<br>용도: 단독주택<br>층수: -1/3</div>`)[0];
+                popup_259bfc57073380902e61bfebdbf88a0b.setContent(html_95f5ff3aeb7a86092c58765adfb3e6b4);
+            
+        
+
+        marker_f54674e52fe71338ee7d2faa18159d42.bindPopup(popup_259bfc57073380902e61bfebdbf88a0b)
+        ;
+
+        
+    
+    
+            marker_f54674e52fe71338ee7d2faa18159d42.bindTooltip(
+                `<div>
+                     동작구 상도동 | 20억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_f54674e52fe71338ee7d2faa18159d42.setIcon(icon_af84deb8c463a1537ab6b09f93a6831e);
+            
+    
+            var marker_aa8c4244df1adfb647137548127a1b2b = L.marker(
+                [37.526729858432674, 126.85262750019595],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_57128086c9ccaa64eaa0285b47a7e22e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_68053cd43d81020c10729689579b5145 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_a176d75fe51af13f94029b3aae1e7bc1 = $(`<div id="html_a176d75fe51af13f94029b3aae1e7bc1" style="width: 100.0%; height: 100.0%;"><b>지번: 신정동 931-5</b><br><b>매가: 15억원</b><br>대지: 51평<br>연식: 1989년<br>용도: 단독주택<br>층수: -1/2</div>`)[0];
+                popup_68053cd43d81020c10729689579b5145.setContent(html_a176d75fe51af13f94029b3aae1e7bc1);
+            
+        
+
+        marker_aa8c4244df1adfb647137548127a1b2b.bindPopup(popup_68053cd43d81020c10729689579b5145)
+        ;
+
+        
+    
+    
+            marker_aa8c4244df1adfb647137548127a1b2b.bindTooltip(
+                `<div>
+                     신정동 931-5 | 15억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_aa8c4244df1adfb647137548127a1b2b.setIcon(icon_57128086c9ccaa64eaa0285b47a7e22e);
+            
+    
+            var marker_7fd444bdfc706b871f1a5215b359a68e = L.marker(
+                [37.485305804282945, 126.96766516837107],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_297e70b32e620f58c426d2489b8fc523 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_c93691af7796fc5c567d018dcdf2180e = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_21caab5a44fa231a0078315802fc5281 = $(`<div id="html_21caab5a44fa231a0078315802fc5281" style="width: 100.0%; height: 100.0%;"><b>지번: 동작구 사당동</b><br><b>매가: 45억원</b><br>대지: 70평<br>연식: 2013년<br>용도: 종교시설 및 제1종근린생활시설(소매점) <br>층수: -1/5</div>`)[0];
+                popup_c93691af7796fc5c567d018dcdf2180e.setContent(html_21caab5a44fa231a0078315802fc5281);
+            
+        
+
+        marker_7fd444bdfc706b871f1a5215b359a68e.bindPopup(popup_c93691af7796fc5c567d018dcdf2180e)
+        ;
+
+        
+    
+    
+            marker_7fd444bdfc706b871f1a5215b359a68e.bindTooltip(
+                `<div>
+                     동작구 사당동 | 45억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_7fd444bdfc706b871f1a5215b359a68e.setIcon(icon_297e70b32e620f58c426d2489b8fc523);
+            
+    
+            var marker_5d1cc8753666f63af64267a6f915bd73 = L.marker(
+                [37.47422811681634, 126.97350329876606],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_1a4107b77126fd9cb303142c076e8e48 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_2db5fd19a2e51b58822b19b1472f37cb = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_2300dc72ae923763cf48e348bc3a98d4 = $(`<div id="html_2300dc72ae923763cf48e348bc3a98d4" style="width: 100.0%; height: 100.0%;"><b>지번: 남현동 1070-14</b><br><b>매가: 12억원</b><br>대지: 40평<br>용도: 주택<br>층수: -1/2</div>`)[0];
+                popup_2db5fd19a2e51b58822b19b1472f37cb.setContent(html_2300dc72ae923763cf48e348bc3a98d4);
+            
+        
+
+        marker_5d1cc8753666f63af64267a6f915bd73.bindPopup(popup_2db5fd19a2e51b58822b19b1472f37cb)
+        ;
+
+        
+    
+    
+            marker_5d1cc8753666f63af64267a6f915bd73.bindTooltip(
+                `<div>
+                     남현동 1070-14 | 12억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_5d1cc8753666f63af64267a6f915bd73.setIcon(icon_1a4107b77126fd9cb303142c076e8e48);
+            
+    
+            var marker_4ca7e0ccf7e7e758b7ea44e4db57b848 = L.marker(
+                [37.48119589282026, 126.97550304380306],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_5552d70a585286bda153178ab0fbdf1c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_c311c9e57b1a495193dd996dca543c4e = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_b3c3afd3727507f3de488aeaff357156 = $(`<div id="html_b3c3afd3727507f3de488aeaff357156" style="width: 100.0%; height: 100.0%;"><b>지번: 동작구 사당동</b><br><b>매가: 39억원</b><br>대지: 61평<br>연식: 2020년<br>용도: 제1종근린생활시설[소매점],제2종근린생활시설[사무소],단독[다중]주택<br>층수: 0/5</div>`)[0];
+                popup_c311c9e57b1a495193dd996dca543c4e.setContent(html_b3c3afd3727507f3de488aeaff357156);
+            
+        
+
+        marker_4ca7e0ccf7e7e758b7ea44e4db57b848.bindPopup(popup_c311c9e57b1a495193dd996dca543c4e)
+        ;
+
+        
+    
+    
+            marker_4ca7e0ccf7e7e758b7ea44e4db57b848.bindTooltip(
+                `<div>
+                     동작구 사당동 | 39억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_4ca7e0ccf7e7e758b7ea44e4db57b848.setIcon(icon_5552d70a585286bda153178ab0fbdf1c);
+            
+    
+            var marker_28689a40fc120ed3249aba9dd3eff3e6 = L.marker(
+                [37.47515215008561, 126.90031653865773],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_8556c7649c3124834eb32ecf7fb2540f = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_ad20d121e8f49c1c88e78be7a6591f32 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_6e17557191b2547b792506ec14668527 = $(`<div id="html_6e17557191b2547b792506ec14668527" style="width: 100.0%; height: 100.0%;"><b>지번: 독산동 969-6</b><br><b>매가: 32억원</b><br>대지: 114평<br>연식: 1970년<br>용도: 제1,2종근린생활시설<br>층수: -1/2</div>`)[0];
+                popup_ad20d121e8f49c1c88e78be7a6591f32.setContent(html_6e17557191b2547b792506ec14668527);
+            
+        
+
+        marker_28689a40fc120ed3249aba9dd3eff3e6.bindPopup(popup_ad20d121e8f49c1c88e78be7a6591f32)
+        ;
+
+        
+    
+    
+            marker_28689a40fc120ed3249aba9dd3eff3e6.bindTooltip(
+                `<div>
+                     독산동 969-6 | 32억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_28689a40fc120ed3249aba9dd3eff3e6.setIcon(icon_8556c7649c3124834eb32ecf7fb2540f);
+            
+    
+            var marker_2b3fa37726cdf7d377fbed7f7a94863e = L.marker(
+                [37.48971418624052, 126.94199841024749],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_ad9161dd5c8dd734dedfa84bd0adccb3 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_91ba804514614cf354da1aaf5fa0bc17 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_a33fd04de1a1a822e25047a2ea0ba02f = $(`<div id="html_a33fd04de1a1a822e25047a2ea0ba02f" style="width: 100.0%; height: 100.0%;"><b>지번: 봉천동 635-146</b><br><b>매가: 12.5억원</b><br>대지: 41평<br>연식: 2008년<br>용도: 단독주택<br>층수: -1/3</div>`)[0];
+                popup_91ba804514614cf354da1aaf5fa0bc17.setContent(html_a33fd04de1a1a822e25047a2ea0ba02f);
+            
+        
+
+        marker_2b3fa37726cdf7d377fbed7f7a94863e.bindPopup(popup_91ba804514614cf354da1aaf5fa0bc17)
+        ;
+
+        
+    
+    
+            marker_2b3fa37726cdf7d377fbed7f7a94863e.bindTooltip(
+                `<div>
+                     봉천동 635-146 | 12.5억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_2b3fa37726cdf7d377fbed7f7a94863e.setIcon(icon_ad9161dd5c8dd734dedfa84bd0adccb3);
+            
+    
+            var marker_6a34bc83615201b156a5b7f7915688f6 = L.marker(
+                [37.48703434176947, 126.92207383629511],
+                {
+}
+            ).addTo(map_f2d2021dd0984a66fad65404e3ecbca2);
+        
+    
+            var icon_2550d9a6948b3d56ae06f51b089fde9c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bookmark",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_fd3b7fd6056a96c930366c9b86cd8aef = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_604202b01178328ecbef9e654bb9d871 = $(`<div id="html_604202b01178328ecbef9e654bb9d871" style="width: 100.0%; height: 100.0%;"><b>지번: 신림동 461-9</b><br><b>매가: 15.7억원</b><br>대지: 46평<br>연식: 2001년<br>용도: 단독주택<br>층수: -1/3</div>`)[0];
+                popup_fd3b7fd6056a96c930366c9b86cd8aef.setContent(html_604202b01178328ecbef9e654bb9d871);
+            
+        
+
+        marker_6a34bc83615201b156a5b7f7915688f6.bindPopup(popup_fd3b7fd6056a96c930366c9b86cd8aef)
+        ;
+
+        
+    
+    
+            marker_6a34bc83615201b156a5b7f7915688f6.bindTooltip(
+                `<div>
+                     신림동 461-9 | 15.7억원
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_6a34bc83615201b156a5b7f7915688f6.setIcon(icon_2550d9a6948b3d56ae06f51b089fde9c);
+            
+</script>
+</html>

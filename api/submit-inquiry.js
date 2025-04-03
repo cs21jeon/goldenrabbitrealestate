@@ -47,9 +47,10 @@ export default async function handler(req, res) {
     const apiKey = process.env.AIRTABLE_API_KEY;
     const baseId = 'appBm845MhVkkaBD1';
     const tableId = 'tblgik4xDNNPb8WUE';
+    const viewId = 'viwdvYt1a6OTKkQyd';
     
     // 에어테이블 API 요청
-    const response = await fetch(`https://api.airtable.com/v0/${baseId}/${tableId}`, {
+    const response = await fetch(`https://api.airtable.com/v0/${baseId}/${tableId}/${viewId}?blocks=hide`, {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${apiKey}`,

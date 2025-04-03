@@ -595,7 +595,7 @@
             <div style="margin-top: 60px;">
                 <div class="section-title">
                     <h2>매물 지도</h2>
-                    <p>동작구 전체 매물을 한눈에 확인하세요</p>
+                    <p>전체 매물을 한눈에 확인하세요</p>
                 </div>
                 
                 <div style="width: 100%; height: 600px; border-radius: 8px; overflow: hidden; margin-bottom: 30px; box-shadow: 0 3px 15px rgba(0,0,0,0.1);">
@@ -641,6 +641,7 @@
 
     <!-- 에어테이블 API 스크립트 -->
     <script src="/js/property-api.js"></script>
+    <script src="/js/inquiry-form.js"></script>
 
 <!-- 상담 섹션과 함께 사용할 스크립트 -->
 
@@ -732,92 +733,6 @@
     </div>
 </section>
 
-<!-- 상담 폼 제출 스크립트 -->
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const consultForm = document.getElementById('consultForm');
-        const formStatus = document.getElementById('formStatus');
-        
-        if (consultForm) {
-            consultForm.addEventListener('submit', async function(e) {
-                e.preventDefault();
-                
-                // 로딩 표시
-                const submitButton = consultForm.querySelector('button[type="submit"]');
-                const originalButtonText = submitButton.textContent;
-                submitButton.disabled = true;
-                submitButton.textContent = '접수 중...';
-                
-                // 상태 메시지 표시
-                formStatus.style.display = 'block';
-                formStatus.textContent = '상담 문의를 접수 중입니다...';
-                formStatus.style.color = '#666';
-                
-                // 폼 데이터 수집
-                const propertyType = document.getElementById('propertyType').value;
-                const phone = document.getElementById('phone').value;
-                const email = document.getElementById('email').value || '';
-                const message = document.getElementById('message').value;
-                
-                try {
-                    // 방법 1: 서버리스 함수 사용 (권장)
-                    // 서버리스 함수 엔드포인트는 배포 환경에 맞게 수정 필요
-                    const response = await fetch('/api/submit-inquiry', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            propertyType,
-                            phone,
-                            email,
-                            message
-                        })
-                    });
-                    
-                    if (!response.ok) {
-                        throw new Error('서버 요청 실패');
-                    }
-                    
-                    // 성공 메시지
-                    formStatus.textContent = '상담 신청이 성공적으로 접수되었습니다. 빠른 시일 내에 연락드리겠습니다.';
-                    formStatus.style.color = 'green';
-                    consultForm.reset();
-                    
-                    // 5초 후 메시지 숨기기
-                    setTimeout(() => {
-                        formStatus.style.display = 'none';
-                    }, 5000);
-                    
-                } catch (error) {
-                    console.error('상담 접수 실패:', error);
-                    
-                    // 방법 2: 직접 에어테이블 API 호출 (CORS 문제 발생 가능, 개발 환경에서만 사용)
-                    try {
-                        // 여기에 직접 API 호출 코드 추가 (실제 운영에서는 권장하지 않음)
-                        formStatus.textContent = '상담 신청이 성공적으로 접수되었습니다. 빠른 시일 내에 연락드리겠습니다.';
-                        formStatus.style.color = 'green';
-                        consultForm.reset();
-                        
-                        // 5초 후 메시지 숨기기
-                        setTimeout(() => {
-                            formStatus.style.display = 'none';
-                        }, 5000);
-                    } catch (directError) {
-                        // 오류 메시지
-                        formStatus.textContent = '상담 접수 중 오류가 발생했습니다. 전화로 문의해 주세요.';
-                        formStatus.style.color = 'red';
-                    }
-                } finally {
-                    // 버튼 상태 복원
-                    submitButton.disabled = false;
-                    submitButton.textContent = originalButtonText;
-                }
-            });
-        }
-    });
-</script>
-
     <!-- 위치 섹션 -->
     <section id="location">
         <div class="container">
@@ -892,7 +807,7 @@
             </div>
         </div>
     </footer>    
- 
+
 <!-- 자바스크립트 -->
 <script>
 

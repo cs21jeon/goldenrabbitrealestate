@@ -20,13 +20,6 @@ export default async function handler(req, res) {
       'sell': '매물접수'
     };
     
-    // 현재 날짜 및 시간 (한국 시간)
-    const now = new Date();
-    const kstTime = new Date(now.getTime() + (9 * 60 * 60 * 1000)); // UTC+9 (KST)
-    const formattedDate = kstTime.toISOString().split('T')[0]; // YYYY-MM-DD
-    const formattedTime = kstTime.toISOString().split('T')[1].substring(0, 8); // HH:MM:SS
-    const submitDateTime = `${formattedDate} ${formattedTime}`;
-    
     // 에어테이블에 제출할 데이터
     const data = {
       records: [
@@ -35,9 +28,7 @@ export default async function handler(req, res) {
             '매물종류': propertyTypeMap[propertyType] || propertyType,
             '연락처': phone,
             '이메일': email || '',
-            '문의사항': message,
-            '접수일시': submitDateTime,
-            '상태': '접수완료'
+            '문의사항': message
           }
         }
       ]
@@ -47,10 +38,9 @@ export default async function handler(req, res) {
     const apiKey = process.env.AIRTABLE_API_KEY;
     const baseId = 'appBm845MhVkkaBD1';
     const tableId = 'tblgik4xDNNPb8WUE';
-    const viewId = 'viwdvYt1a6OTKkQyd';
     
     // 에어테이블 API 요청
-    const response = await fetch(`https://api.airtable.com/v0/${baseId}/${tableId}/${viewId}?blocks=hide`, {
+    const response = await fetch(`https://api.airtable.com/v0/${baseId}/${tableId}`, {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${apiKey}`,

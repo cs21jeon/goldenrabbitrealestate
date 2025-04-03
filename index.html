@@ -640,7 +640,7 @@
     </style>
 
     <!-- 에어테이블 API 스크립트 -->
-    <script src="property-api.js"></script>
+    <script src="/js/property-api.js"></script>
 
 <!-- 상담 섹션과 함께 사용할 스크립트 -->
 
@@ -703,6 +703,7 @@
                             <option value="mixed">상가주택</option>
                             <option value="commercial">상업용빌딩</option>
                             <option value="land">재건축/토지</option>
+                            <option value="sell">매물접수</option>
                         </select>
                     </div>
                     
@@ -852,7 +853,7 @@
             <div class="footer-content">
                 <div class="footer-about">
                     <div class="footer-logo">
-                        <img src="logo_goldenrabbit.jpg" alt="금토끼부동산 로고" style="height: 40px; margin-right: 10px; vertical-align: middle;">
+                        <img src="/images/logo_goldenrabbit.jpg" alt="금토끼부동산 로고" style="height: 40px; margin-right: 10px; vertical-align: middle;">
                         금토끼부동산중개
                     </div>
                     <div class="footer-description">
@@ -894,13 +895,7 @@
  
 <!-- 자바스크립트 -->
 <script>
-    // 상담 폼 제출 처리
-    document.getElementById('consultForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        alert('상담 신청이 완료되었습니다. 빠른 시일 내에 연락드리겠습니다.');
-        this.reset();
-    });
-    
+
     // 스크롤 애니메이션 (부드러운 스크롤)
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {

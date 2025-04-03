@@ -30,7 +30,8 @@ document.addEventListener('DOMContentLoaded', function() {
           'house': '단독/다가구',
           'mixed': '상가주택',
           'commercial': '상업용빌딩',
-          'land': '재건축/토지'
+          'land': '재건축/토지',
+          'sell': '매물접수'
         };
         
         // 에어테이블에 제출할 데이터

@@ -1,22 +1,24 @@
 import folium
 import requests
+import os
+from dotenv import load_dotenv
 
-# V-World API 키
-vworld_apikey = 'F640BE1E-8470-3590-BBD7-85F0A549B400'
+# 환경 변수 로드
+load_dotenv()
 
-# 에어테이블 API 정보
-# 개인 액세스 토큰 - https://airtable.com/create/tokens 에서 생성
-airtable_token = 'pat7olc5Gz7qkrUm7.8e86080895b1e58dd6ec4ffcf1b482d03cb36f837f7d6aa0b90b319e2ffdf58b'  # 여기에 발급받은 개인 액세스 토큰을 입력하세요
+# 환경 변수에서 API 키 가져오기
+vworld_apikey = os.environ.get('VWORLD_APIKEY', 'YOUR_DEFAULT_KEY')
+airtable_token = os.environ.get('AIRTABLE_TOKEN', 'YOUR_DEFAULT_TOKEN')
+
 base_id = 'appGSg5QfDNKgFf73'
 table_id = 'tblnR438TK52Gr0HB'
-name_field = '지번 주소'  # 장소명이 저장된 필드명 - 실제 필드명으로 변경 필요
 address_field = '지번 주소'  # 주소가 저장된 필드명 - 실제 필드명으로 변경 필요
 price_field = '매가(만원)'  # 매가 정보가 저장된 필드명
 status_field = '현황'  # 현황 정보가 저장된 필드명
 
 # 팝업에 표시할 추가 필드
 additional_fields = {
-    '대지면적(㎡)': '대지면적(㎡)',
+    '토지면적(㎡)': '토지면적(㎡)',
     '연면적(㎡)': '연면적(㎡)',
     '건폐율(%)': '건폐율(%)',
     '용적률(%)': '용적률(%)',
@@ -45,7 +47,7 @@ def get_airtable_data():
     print(f"에어테이블 API 요청 URL: {url}")
     print(f"베이스 ID: {base_id}")
     print(f"테이블 ID: {table_id}")
-    print(f"검색할 필드명: name_field='{name_field}', address_field='{address_field}', price_field='{price_field}', status_field='{status_field}'")
+    print(f"검색할 필드명: address_field='{address_field}', price_field='{price_field}', status_field='{status_field}'")
     
     try:
         # API 요청 수행
@@ -78,8 +80,8 @@ def get_airtable_data():
                 fields = record.get('fields', {})
                 
                 # 입력한 필드명으로 데이터 찾기
-                name = fields.get(name_field)
                 address = fields.get(address_field)
+                name = address  # 주소를 이름으로도 사용
                 price = fields.get(price_field)
                 status = fields.get(status_field)
                 
@@ -90,7 +92,6 @@ def get_airtable_data():
                 
                 # 디버깅: 첫 번째 레코드의 실제 값 출력
                 if len(address_data) == 0:
-                    print(f"name 필드값: {name}")
                     print(f"address 필드값: {address}")
                     print(f"price 필드값: {price}")
                     print(f"status 필드값: {status}")
@@ -99,8 +100,8 @@ def get_airtable_data():
                     for display_name, value in field_values.items():
                         print(f"{display_name} 필드값: {value}")
                 
-                # 필터링: 주소가 있고, 현황이 "정상", "비공개", "디스코만" 중 하나라도 포함된 경우에만 처리
-                valid_status = ["정상", "비공개", "디스코만"]
+                # 필터링: 주소가 있고, 현황이 "네이버", "디스코", "당근", "비공개" 중 하나라도 포함된 경우에만 처리
+                valid_status = ["네이버", "디스코", "당근", "비공개"]
                 
                 # 현황 필드가 None이 아니고, 리스트 형태이며, 유효한 상태 중 하나라도 포함하고 있는지 확인
                 is_valid_status = False
@@ -219,39 +220,31 @@ def create_map():
                             else:
                                 price_display = f"{addr[2]}만원"
                         
-                        # 주소에서 동 이름과 번지 추출
-                        address_parts = addr[1].split()
-                        dong_bunji = ""
-                        for i, part in enumerate(address_parts):
-                            if "동" in part and len(part) > 1:  # 동 이름 찾기 (예: 사당동)
-                                # 다음 부분이 번지일 가능성이 높음
-                                if i + 1 < len(address_parts):
-                                    bunji = address_parts[i + 1]
-                                    dong_bunji = f"{part} {bunji}"
-                                    break
-                                else:
-                                    dong_bunji = part
-                        
-                        # 주소 정보가 없으면 원래 주소 사용
-                        if not dong_bunji:
-                            dong_bunji = addr[1]
-                            
+                        # 주소에서 첫 번째 공백 이후의 부분만 추출
+                        if ' ' in addr[1]:
+                            # 첫 번째 공백 이후의 모든 텍스트 가져오기
+                            dong_bunji = addr[1].split(' ', 1)[1]
+                        else:
+                            # 공백이 없는 경우 전체 주소 사용
+                            dong_bunji = addr[1]                        
+                         
                         # 추가 필드 값 가져오기
                         field_values = addr[4]
                         
-                        # 마커 추가 (수정된 형식으로 정보 표시)
-                        popup_content = f'<b>지번: {dong_bunji}</b>'
+                        # 마커 추가 (수정된 형식으로 정보 표시) - 글자 크기 키우기
+                        popup_content = '<div style="font-size: 14px;">'  # 기본 글자 크기 설정
+                        popup_content += f'<b>지번: {dong_bunji}</b>'
                         popup_content += f'<br><b>매가: {price_display}</b>'
-                        
+
                         # 대지 정보 추가
-                        if '대지면적(㎡)' in field_values and field_values['대지면적(㎡)'] is not None:
+                        if '토지면적(㎡)' in field_values and field_values['토지면적(㎡)'] is not None:
                             try:
-                                land_area_sqm = float(field_values['대지면적(㎡)'])
+                                land_area_sqm = float(field_values['토지면적(㎡)'])
                                 land_area_pyeong = round(land_area_sqm / 3.3058)
                                 popup_content += f'<br>대지: {land_area_pyeong}평'
                             except (ValueError, TypeError):
                                 pass
-                        
+
                         # 연식 정보 추가
                         if '사용승인일' in field_values and field_values['사용승인일'] is not None:
                             try:
@@ -265,14 +258,16 @@ def create_map():
                                     popup_content += f'<br>연식: {approval_date[:4]}년'
                             except:
                                 pass
-                        
+
                         # 주용도 정보 추가 (선택사항)
                         if '주용도' in field_values and field_values['주용도'] is not None:
                             popup_content += f'<br>용도: {field_values["주용도"]}'
-                        
+
                         # 층수 정보 추가 (선택사항)
                         if '층수' in field_values and field_values['층수'] is not None:
                             popup_content += f'<br>층수: {field_values["층수"]}'
+
+                        popup_content += '</div>'  # 스타일 div 닫기
                         
                         # 툴팁에 표시할 내용
                         tooltip_content = f'{dong_bunji} | {price_display}'

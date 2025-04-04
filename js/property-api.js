@@ -136,8 +136,8 @@ async function fetchPropertiesFromAirtable() {
     const address = property['지번 주소'] || '주소 정보 없음';
     
     // 에어테이블 레코드 링크 생성
-    const airtableLink = `https://airtable.com/appGSg5QfDNKgFf73/tblnR438TK52Gr0HB/viweFlrK1v4aXqYH8/${recordId}?blocks=hide`;
-    
+    const airtableLink = `https://airtable.com/shrMoyiS143vdYbYS?recordId=${recordId}`;
+
     // 모달 콘텐츠 HTML
     modalBackground.innerHTML = `
       <div class="modal-content">

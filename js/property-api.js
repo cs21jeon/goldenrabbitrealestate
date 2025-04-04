@@ -168,9 +168,9 @@ async function fetchPropertiesFromAirtable() {
             </div>
           </div>
           
-          <div style="text-align: center; margin-top: 20px;">
-            <a href="#contact" class="btn" onclick="closeModal()">문의하기</a>
-            <a href="${airtableLink}" class="btn" style="margin-left: 10px; background-color: #4CAF50;" target="_blank">에어테이블에서 보기</a>
+          <div style="text-align: center; margin-top: 30px; margin-bottom: 20px;">
+            <a href="#contact" class="btn" onclick="closeModal()" style="margin-bottom: 15px; display: block;">문의하기</a>
+            <a href="${airtableLink}" class="btn" style="background-color: #4CAF50; display: block;" target="_blank">에어테이블에서 보기</a>
           </div>
         </div>
       </div>

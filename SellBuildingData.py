@@ -48,88 +48,109 @@ def get_airtable_data():
     print(f"베이스 ID: {base_id}")
     print(f"테이블 ID: {table_id}")
     print(f"검색할 필드명: address_field='{address_field}', price_field='{price_field}', status_field='{status_field}'")
-    
+
+    all_records = []
+    offset = None
+
     try:
-        # API 요청 수행
-        response = requests.get(url, headers=headers)
-        
-        # 응답 상세 정보 출력 (디버깅용)
-        print(f"API 응답 상태 코드: {response.status_code}")
-        
-        if response.status_code == 200:
-            data = response.json()
-            records = data.get('records', [])
-            print(f"가져온 레코드 수: {len(records)}")
+        # 페이지네이션을 사용하여 모든 레코드 가져오기
+        while True:
+            # offset이 있으면 다음 페이지 요청
+            params = {}
+            if offset:
+                params['offset'] = offset
             
-            # 디버깅: 첫 번째 레코드의 필드 키 출력
-            if len(records) > 0:
-                fields = records[0].get('fields', {})
-                print(f"첫 번째 레코드의 필드 키: {list(fields.keys())}")
-                
-                # 필드명 공백 문제 확인
-                possible_address_fields = [k for k in fields.keys() if '주소' in k or 'address' in k.lower()]
-                possible_price_fields = [k for k in fields.keys() if '매가' in k or 'price' in k.lower() or '금액' in k]
-                possible_status_fields = [k for k in fields.keys() if '현황' in k or 'status' in k.lower()]
-                
-                print(f"가능한 주소 필드: {possible_address_fields}")
-                print(f"가능한 가격 필드: {possible_price_fields}")
-                print(f"가능한 현황 필드: {possible_status_fields}")
+            # API 요청 수행
+            response = requests.get(url, headers=headers, params=params)
             
-            address_data = []
-            for record in records:
-                fields = record.get('fields', {})
+            # 응답 상세 정보 출력 (디버깅용)
+            print(f"API 응답 상태 코드: {response.status_code}")
+            
+            if response.status_code == 200:
+                data = response.json()
+                records = data.get('records', [])
+                all_records.extend(records)
                 
-                # 입력한 필드명으로 데이터 찾기
-                address = fields.get(address_field)
-                name = address  # 주소를 이름으로도 사용
-                price = fields.get(price_field)
-                status = fields.get(status_field)
+                print(f"현재까지 가져온 레코드 수: {len(all_records)}")
                 
-                # 추가 필드 값 가져오기
-                field_values = {}
-                for display_name, field_name in additional_fields.items():
-                    field_values[display_name] = fields.get(field_name)
-                
-                # 디버깅: 첫 번째 레코드의 실제 값 출력
-                if len(address_data) == 0:
-                    print(f"address 필드값: {address}")
-                    print(f"price 필드값: {price}")
-                    print(f"status 필드값: {status}")
+                # 첫 페이지일 경우 필드 정보 디버깅
+                if len(all_records) <= len(records) and len(records) > 0:
+                    fields = records[0].get('fields', {})
+                    print(f"첫 번째 레코드의 필드 키: {list(fields.keys())}")
                     
-                    # 첫 번째 레코드의 추가 필드 값 출력
-                    for display_name, value in field_values.items():
-                        print(f"{display_name} 필드값: {value}")
-                
-                # 필터링: 주소가 있고, 현황이 "네이버", "디스코", "당근", "비공개" 중 하나라도 포함된 경우에만 처리
-                valid_status = ["네이버", "디스코", "당근", "비공개"]
-                
-                # 현황 필드가 None이 아니고, 리스트 형태이며, 유효한 상태 중 하나라도 포함하고 있는지 확인
-                is_valid_status = False
-                if address is not None and status is not None:
-                    if isinstance(status, list):
-                        # 리스트에서 유효한 상태 중 하나라도 포함되어 있는지 확인
-                        is_valid_status = any(s in valid_status for s in status)
-                    elif isinstance(status, str):
-                        # 문자열인 경우 직접 확인
-                        is_valid_status = status in valid_status
-                
-                if address is not None and is_valid_status:
-                    # 숫자 형식의 가격인 경우 숫자로 변환
-                    try:
-                        if isinstance(price, str) and price.isdigit():
-                            price = int(price)
-                        elif isinstance(price, (int, float)):
-                            price = int(price)
-                    except (ValueError, TypeError):
-                        pass
+                    # 필드명 공백 문제 확인
+                    possible_address_fields = [k for k in fields.keys() if '주소' in k or 'address' in k.lower()]
+                    possible_price_fields = [k for k in fields.keys() if '매가' in k or 'price' in k.lower() or '금액' in k]
+                    possible_status_fields = [k for k in fields.keys() if '현황' in k or 'status' in k.lower()]
                     
-                    address_data.append([name, address, price, status, field_values])
+                    print(f"가능한 주소 필드: {possible_address_fields}")
+                    print(f"가능한 가격 필드: {possible_price_fields}")
+                    print(f"가능한 현황 필드: {possible_status_fields}")
+                
+                # 다음 페이지가 있는지 확인
+                offset = data.get('offset')
+                if not offset:
+                    break  # 더 이상 페이지가 없으면 종료
+            else:
+                print(f"에어테이블 API 오류: {response.status_code}")
+                print(response.text)
+                break
+        
+# 여기서부터는 기존 코드와 동일
+        address_data = []
+        for record in all_records:
+            fields = record.get('fields', {})
             
-            return address_data
-        else:
-            print(f"에어테이블 API 오류: {response.status_code}")
-            print(response.text)
-            return []
+            # 입력한 필드명으로 데이터 찾기
+            address = fields.get(address_field)
+            name = address  # 주소를 이름으로도 사용
+            price = fields.get(price_field)
+            status = fields.get(status_field)
+            
+            # 추가 필드 값 가져오기
+            field_values = {}
+            for display_name, field_name in additional_fields.items():
+                field_values[display_name] = fields.get(field_name)
+            
+            # 디버깅: 일부 레코드의 실제 값 출력
+            if len(address_data) < 3:  # 처음 3개 레코드만 출력
+                print(f"address 필드값: {address}")
+                print(f"price 필드값: {price}")
+                print(f"status 필드값: {status}")
+                
+                # 첫 번째 레코드의 추가 필드 값 출력
+                for display_name, value in field_values.items():
+                    print(f"{display_name} 필드값: {value}")
+            
+            # 필터링: 주소가 있고, 현황이 "네이버", "디스코", "당근", "비공개" 중 하나라도 포함된 경우에만 처리
+            valid_status = ["네이버", "디스코", "당근", "비공개"]
+            
+            # 현황 필드가 None이 아니고, 리스트 형태이며, 유효한 상태 중 하나라도 포함하고 있는지 확인
+            is_valid_status = False
+            if address is not None and status is not None:
+                if isinstance(status, list):
+                    # 리스트에서 유효한 상태 중 하나라도 포함되어 있는지 확인
+                    is_valid_status = any(s in valid_status for s in status)
+                elif isinstance(status, str):
+                    # 문자열인 경우 직접 확인
+                    is_valid_status = status in valid_status
+            
+            if address is not None and is_valid_status:
+                # 숫자 형식의 가격인 경우 숫자로 변환
+                try:
+                    if isinstance(price, str) and price.isdigit():
+                        price = int(price)
+                    elif isinstance(price, (int, float)):
+                        price = int(price)
+                except (ValueError, TypeError):
+                    pass
+                
+                address_data.append([name, address, price, status, field_values])
+        
+        # 여기서 for 루프가 끝나고 데이터를 반환해야 함
+        print(f"필터링 후 사용할 레코드 수: {len(address_data)}")
+        return address_data
+    
     except Exception as e:
         print(f"API 요청 중 예외 발생: {str(e)}")
         return []
@@ -144,14 +165,14 @@ def create_map():
     
     # 기본 타일 레이어 추가
     folium.TileLayer(
-        tiles=f'http://api.vworld.kr/req/wmts/1.0.0/{vworld_apikey}/Base/{{z}}/{{y}}/{{x}}.png',
+        tiles=f'https://api.vworld.kr/req/wmts/1.0.0/{vworld_apikey}/Base/{{z}}/{{y}}/{{x}}.png',
         attr='공간정보 오픈플랫폼(브이월드)',
         name='브이월드 배경지도',
     ).add_to(map)
     
     # WMS 타일 레이어 추가
     folium.WmsTileLayer(
-        url='http://api.vworld.kr/req/wms?',
+        url='https://api.vworld.kr/req/wms?',
         layers='lt_c_landinfobasemap',
         request='GetMap',
         version='1.3.0',
@@ -219,7 +240,15 @@ def create_map():
                                 price_display = f"{addr[2]:,}만원"
                             else:
                                 price_display = f"{addr[2]}만원"
-                        
+                            
+                        # 마커 정보에 현황 추가 - addr[3]에서 현황 정보 가져오기
+                        status_info = ""
+                        if addr[3]:  # addr[3]은 status 정보
+                            if isinstance(addr[3], list):
+                                status_info = f"현황: {', '.join(addr[3])}"
+                            else:
+                                status_info = f"현황: {addr[3]}"
+                        # 첫 번째 공백 이후의 부분만 추출하여 주소 표시                        
                         # 주소에서 첫 번째 공백 이후의 부분만 추출
                         if ' ' in addr[1]:
                             # 첫 번째 공백 이후의 모든 텍스트 가져오기
@@ -241,7 +270,7 @@ def create_map():
                             try:
                                 land_area_sqm = float(field_values['토지면적(㎡)'])
                                 land_area_pyeong = round(land_area_sqm / 3.3058)
-                                popup_content += f'<br>대지: {land_area_pyeong}평'
+                                popup_content += f'<br><b>대지:</b> {land_area_pyeong}평 ({land_area_sqm}㎡)'
                             except (ValueError, TypeError):
                                 pass
 

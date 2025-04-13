@@ -194,130 +194,143 @@ def create_map():
         print("에어테이블에서 가져온 주소 데이터가 없습니다.")
         return map
     
-    # V-World API로 주소 좌표 변환 및 마커 추가
-    vworld_apiurl = 'https://api.vworld.kr/req/address?'
-    
-    for addr in address_data:
-        params = {
-            'service': 'address',
-            'request': 'getcoord',
-            'crs': 'epsg:4326',
-            'address': addr[1],
-            'format': 'json',
-            'type': 'PARCEL',  # 지번 주소 검색
-            'key': vworld_apikey
-        }
-        
-        response = requests.get(vworld_apiurl, params=params)
-        
-        if response.status_code == 200:
-            data = response.json()
-            
-            # 좌표 정보가 있는지 확인
-            if data.get('response', {}).get('status') == 'OK':
-                result = data.get('response', {}).get('result', {})
-                point = result.get('point', {})
+    # V-World API로 주소 좌표 변환 및 마커 추가 부분을 변경
+    # Python에서 직접 API 호출하는 대신 클라이언트에서 처리하도록 JavaScript 코드 삽입
+
+    # address_data를 JSON 형식으로 변환하여 HTML에 삽입
+    import json
+    address_data_json = json.dumps(address_data)
+
+    # JavaScript 코드를 생성하여 HTML에 삽입
+    js_code = f"""
+    <script>
+    // 주소 데이터를 JavaScript 변수로 저장
+    const addressData = {address_data_json};
+
+    // 페이지 로드 완료 시 실행
+    document.addEventListener('DOMContentLoaded', async function() {{
+        // 모든 주소에 대해 좌표 변환 및 마커 추가
+        for (const addr of addressData) {{
+            try {{
+                // 서버리스 함수를 통해 주소 좌표 변환
+                const response = await fetch(`/api/vworld?address=${{encodeURIComponent(addr[1])}}`);
+                const data = await response.json();
                 
-                if point:
-                    x = point.get('x')
-                    y = point.get('y')
+                // 좌표 정보가 있는지 확인
+                if (data.response && data.response.status === 'OK') {{
+                    const result = data.response.result;
+                    const point = result.point;
                     
-                    if x and y:
-                        # 금액을 억 단위로 변환
-                        price_display = addr[2]
-                        if isinstance(addr[2], (int, float)) and addr[2] >= 10000:
-                            # 10000만원(1억) 이상인 경우
-                            price_in_billions = addr[2] / 10000
-                            if price_in_billions % 1 == 0:
-                                # 정수인 경우 (예: 3억)
-                                price_display = f"{int(price_in_billions)}억원"
-                            else:
-                                # 소수점이 있는 경우 (예: 3.5억)
-                                price_display = f"{price_in_billions:.1f}억원".replace('.0억원', '억원')
-                        else:
-                            # 1억 미만인 경우 (만원 단위 유지)
-                            if isinstance(addr[2], (int, float)):
-                                price_display = f"{addr[2]:,}만원"
-                            else:
-                                price_display = f"{addr[2]}만원"
-                            
-                        # 마커 정보에 현황 추가 - addr[3]에서 현황 정보 가져오기
-                        status_info = ""
-                        if addr[3]:  # addr[3]은 status 정보
-                            if isinstance(addr[3], list):
-                                status_info = f"현황: {', '.join(addr[3])}"
-                            else:
-                                status_info = f"현황: {addr[3]}"
-                        # 첫 번째 공백 이후의 부분만 추출하여 주소 표시                        
-                        # 주소에서 첫 번째 공백 이후의 부분만 추출
-                        if ' ' in addr[1]:
-                            # 첫 번째 공백 이후의 모든 텍스트 가져오기
-                            dong_bunji = addr[1].split(' ', 1)[1]
-                        else:
-                            # 공백이 없는 경우 전체 주소 사용
-                            dong_bunji = addr[1]                        
-                         
-                        # 추가 필드 값 가져오기
-                        field_values = addr[4]
+                    if (point && point.x && point.y) {{
+                        // 금액을 억 단위로 변환
+                        let priceDisplay = addr[2];
+                        if (typeof addr[2] === 'number' && addr[2] >= 10000) {{
+                            // 10000만원(1억) 이상인 경우
+                            const priceInBillions = addr[2] / 10000;
+                            if (priceInBillions % 1 === 0) {{
+                                // 정수인 경우 (예: 3억)
+                                priceDisplay = `${{Math.floor(priceInBillions)}}억원`;
+                            }} else {{
+                                // 소수점이 있는 경우 (예: 3.5억)
+                                priceDisplay = `${{priceInBillions.toFixed(1).replace('.0', '')}}억원`;
+                            }}
+                        }} else {{
+                            // 1억 미만인 경우 (만원 단위 유지)
+                            if (typeof addr[2] === 'number') {{
+                                priceDisplay = `${{addr[2].toLocaleString()}}만원`;
+                            }} else {{
+                                priceDisplay = `${{addr[2]}}만원`;
+                            }}
+                        }}
                         
-                        # 마커 추가 (수정된 형식으로 정보 표시) - 글자 크기 키우기
-                        popup_content = '<div style="font-size: 14px;">'  # 기본 글자 크기 설정
-                        popup_content += f'<b>지번: {dong_bunji}</b>'
-                        popup_content += f'<br><b>매가: {price_display}</b>'
-
-                        # 대지 정보 추가
-                        if '토지면적(㎡)' in field_values and field_values['토지면적(㎡)'] is not None:
-                            try:
-                                land_area_sqm = float(field_values['토지면적(㎡)'])
-                                land_area_pyeong = round(land_area_sqm / 3.3058)
-                                popup_content += f'<br><b>대지:</b> {land_area_pyeong}평 ({land_area_sqm}㎡)'
-                            except (ValueError, TypeError):
-                                pass
-
-                        # 연식 정보 추가
-                        if '사용승인일' in field_values and field_values['사용승인일'] is not None:
-                            try:
-                                approval_date = str(field_values['사용승인일'])
-                                # YYYY-MM-DD 또는 YYYY/MM/DD 형식인 경우
-                                if '-' in approval_date or '/' in approval_date:
-                                    year = approval_date.split('-')[0] if '-' in approval_date else approval_date.split('/')[0]
-                                    popup_content += f'<br>연식: {year}년'
-                                # YYYYMMDD 형식인 경우
-                                elif len(approval_date) >= 4:
-                                    popup_content += f'<br>연식: {approval_date[:4]}년'
-                            except:
-                                pass
-
-                        # 주용도 정보 추가 (선택사항)
-                        if '주용도' in field_values and field_values['주용도'] is not None:
-                            popup_content += f'<br>용도: {field_values["주용도"]}'
-
-                        # 층수 정보 추가 (선택사항)
-                        if '층수' in field_values and field_values['층수'] is not None:
-                            popup_content += f'<br>층수: {field_values["층수"]}'
-
-                        popup_content += '</div>'  # 스타일 div 닫기
+                        // 현황 정보 처리
+                        let statusInfo = "";
+                        if (addr[3]) {{
+                            if (Array.isArray(addr[3])) {{
+                                statusInfo = `현황: ${{addr[3].join(', ')}}`;
+                            }} else {{
+                                statusInfo = `현황: ${{addr[3]}}`;
+                            }}
+                        }}
                         
-                        # 툴팁에 표시할 내용
-                        tooltip_content = f'{dong_bunji} | {price_display}'
+                        // 주소에서 첫 번째 공백 이후의 부분만 추출
+                        let dongBunji = addr[1];
+                        if (addr[1].includes(' ')) {{
+                            dongBunji = addr[1].substring(addr[1].indexOf(' ') + 1);
+                        }}
                         
-                        folium.Marker(
-                            [y, x],
-                            popup=folium.Popup(popup_content, max_width=250),
-                            icon=folium.Icon(color='red', icon='bookmark'),
-                            tooltip=tooltip_content
-                        ).add_to(map)
-                        print(f"마커 추가: {dong_bunji}, 좌표: {y}, {x}")
-                    else:
-                        print(f"좌표 변환 실패: {addr[1]}")
-                else:
-                    print(f"좌표 정보 누락: {addr[1]}")
-            else:
-                print(f"주소 검색 실패: {addr[1]}")
-                print(f"응답: {data}")
-        else:
-            print(f"V-World API 오류: {response.status_code}")
-            print(response.text)
+                        // 팝업 내용 생성
+                        let popupContent = '<div style="font-size: 14px;">';
+                        popupContent += `<b>지번: ${{dongBunji}}</b>`;
+                        popupContent += `<br><b>매가: ${{priceDisplay}}</b>`;
+                        
+                        // 추가 필드 값 처리
+                        const fieldValues = addr[4];
+                        
+                        // 대지 정보 추가
+                        if (fieldValues['토지면적(㎡)']) {{
+                            try {{
+                                const landAreaSqm = parseFloat(fieldValues['토지면적(㎡)']);
+                                const landAreaPyeong = Math.round(landAreaSqm / 3.3058);
+                                popupContent += `<br><b>대지:</b> ${{landAreaPyeong}}평 (${{landAreaSqm}}㎡)`;
+                            }} catch (e) {{}}
+                        }}
+                        
+                        // 연식 정보 추가
+                        if (fieldValues['사용승인일']) {{
+                            try {{
+                                const approvalDate = String(fieldValues['사용승인일']);
+                                if (approvalDate.includes('-') || approvalDate.includes('/')) {{
+                                    const year = approvalDate.includes('-') ? 
+                                        approvalDate.split('-')[0] : approvalDate.split('/')[0];
+                                    popupContent += `<br>연식: ${{year}}년`;
+                                }} else if (approvalDate.length >= 4) {{
+                                    popupContent += `<br>연식: ${{approvalDate.substring(0, 4)}}년`;
+                                }}
+                            }} catch (e) {{}}
+                        }}
+                        
+                        // 주용도 정보 추가
+                        if (fieldValues['주용도']) {{
+                            popupContent += `<br>용도: ${{fieldValues['주용도']}}`;
+                        }}
+                        
+                        // 층수 정보 추가
+                        if (fieldValues['층수']) {{
+                            popupContent += `<br>층수: ${{fieldValues['층수']}}`;
+                        }}
+                        
+                        popupContent += '</div>';
+                        
+                        // 툴팁 내용
+                        const tooltipContent = `${{dongBunji}} | ${{priceDisplay}}`;
+                        
+                        // 마커 생성 및 지도에 추가
+                        L.marker([point.y, point.x], {{
+                            icon: L.AwesomeMarkers.icon({{
+                                markerColor: 'red',
+                                iconColor: 'white',
+                                icon: 'bookmark',
+                                prefix: 'glyphicon'
+                            }})
+                        }})
+                        .bindPopup(L.popup({{ maxWidth: 250 }}).setContent(popupContent))
+                        .bindTooltip(tooltipContent, {{ sticky: true }})
+                        .addTo(map);
+                        
+                        console.log(`마커 추가: ${{dongBunji}}, 좌표: ${{point.y}}, ${{point.x}}`);
+                    }}
+                }}
+            }} catch (error) {{
+                console.error(`주소 검색 실패: ${{addr[1]}}`, error);
+            }}
+        }}
+    }});
+    </script>
+    """
+
+    # Python으로 생성한 마커 추가 코드 대신 JavaScript 코드를 HTML에 삽입
+    map.get_root().html.add_child(folium.Element(js_code))
     
     return map
 
